@@ -1,0 +1,68 @@
+#teamContentWrapper
+{
+    display: table;
+    width: 100%;
+}
+
+#teamMainContent
+{
+    background-color: #77bbbb;
+    color: #000000;
+    display: table-cell;
+    padding: 0 1%;
+    text-align: justify;
+    width: 68%;
+}
+
+#teamList
+{
+    background-color: #007777;
+    display: table-cell;
+    margin: 0;
+    padding: 0;
+    width: 30%;
+}
+
+.team
+{
+    float: left;
+    font-size: 28px;
+    list-style-type: none;
+    margin: 0;
+    padding: 2%;
+    width: 96%;
+}
+
+.team:hover
+{
+    background-color: #008888;
+    transition: background-color;
+    transition-duration: 0.2s;
+}
+
+.teamRadio
+{
+    float: left;
+    width: 10%;
+}
+
+.teamName
+{
+    float: left;
+    width: 90%;
+}
+
+#teamList h3
+{
+    color: #bbffbb;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#teamList input[type="radio"]
+{
+    border: none;
+    margin: 0 5px;
+    padding: 10px;
+}

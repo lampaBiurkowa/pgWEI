@@ -1,0 +1,67 @@
+.commonForm
+{
+    background-color: #009999;
+    border: 3px solid #004400;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding: 2%;
+    text-align: center;
+    width: 40%;
+}
+
+.inputArea
+{
+    margin: 5px 0;
+}
+
+.inputLabel
+{
+    float: left;
+    text-align: left;
+    width: 40%;
+}
+
+.inputField
+{
+    float: left;
+    width: 60%;
+}
+
+.inputField input[type="text"], input[type="password"], input[type="email"], input[type="number"]
+{
+    width: 80%;
+}
+
+.chooseSection
+{
+    text-align: left;
+}
+
+.blockItem
+{
+    display: block;
+}
+
+#registerLink
+{
+    padding: 15px;
+    text-align: center;
+}
+
+.commonButton
+{
+    background-color: #00aa66;
+    border: none;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+    width: 150px;
+}
+
+.commonButton:hover
+{
+    cursor: pointer;
+}

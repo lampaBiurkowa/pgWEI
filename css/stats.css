@@ -1,0 +1,41 @@
+#leagueTable
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    width: 70%
+}
+
+#leagueTable td, th
+{
+    border: 1px solid #ffffff;
+    margin: 0;
+    padding: 5px;
+}
+
+#leagueTable td:first-child, th:first-child
+{
+    border: 1px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    margin: 0;
+    padding: 5px;
+}
+
+#leagueTable td:last-child, th:last-child
+{
+    border: 1px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    margin: 0;
+    padding: 5px;
+}
+
+#leagueTable th
+{
+    color: #000000; 
+}
+
+.textCenter
+{
+    text-align: center;
+}

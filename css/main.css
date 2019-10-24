@@ -1,0 +1,236 @@
+body
+{
+    background-color: #007777;
+    color: #eeeeee;
+    font-size: 18px;
+    margin: 0 !important;
+}
+
+a
+{
+    color: inherit;
+    text-decoration: none;
+}
+
+#mainNav
+{
+    background-color: #00aaaa;
+}
+
+#mainNav > ol
+{
+    margin: 0;
+    padding: 0;
+}
+
+#mainNav > ol > li
+{
+    display: block;
+    float: left;
+    font-size: 24px;
+    list-style-type: none;
+    margin: 0;
+    text-align: center;
+    width: 20%;
+}
+
+#mainNav > ol > li > a
+{
+    color: #eeeeee;
+    cursor: pointer;
+    display: block;
+    height: 90%;
+    padding: 5% 0;
+    text-decoration: none;
+    width: 100%;
+}
+
+#mainNav > ol > li > a:hover
+{
+    background-color: #008888;
+    transition: background-color;
+    transition-duration: 0.3s;
+}
+
+#mainNav > ol > li > ul
+{
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 20%;
+    text-align: center;
+}
+
+#mainNav > ol > li:hover > ul > li
+{
+    background-color: #006666;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    transition: font-size;
+    transition-duration: 0.2s;
+}
+
+#mainNav > ol > li > ul > li
+{
+    float: left;
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+#mainNav > ol > li > ul > li > a
+{
+    color: #eeeeee;
+    display: block;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+#mainNav > ol > li:hover > ul > li > a
+{
+    padding: 5% 0;
+}
+
+#mainNav > ol > li > ul > li > a:hover
+{
+    background-color: #004444;
+    transition: background-color;
+    transition-duration: 0.3s;
+}
+
+#mainHeader
+{
+    padding: 1% 0;
+    width: 18%;
+}
+
+#mainHeaderText
+{
+    color: #005500;
+    font-weight: bold;
+}
+
+#footer
+{
+    background-color: #005500;
+    width: 100%;
+}
+
+.footerItem
+{
+    float: left;
+    padding: 10px 0;
+    width: 25%;
+}
+
+.footerItemImg
+{
+    float: left;
+    text-align: center;
+    width: 20%;
+}
+
+.footerItemDesc
+{
+    float: left;
+    font-size: 20px;
+    line-height: 200%;
+    width: 80%;
+}
+
+.commonHeader
+{
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#svgSection
+{
+    margin: 20px;
+    text-align: center;
+}
+
+.majorLink
+{
+    text-align: center;
+}
+
+.majorLink a
+{
+    color: #00dd00;
+    letter-spacing: 1px;
+    font-size: 32px;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 2px 2px #444444;
+}
+
+#entryText
+{
+    padding: 5px;
+    text-align: justify;
+}
+
+#entryText::first-letter
+{
+    color: #00dd00;
+    font-size: 28px;
+}
+
+.textCenter
+{
+    text-align: center;
+}
+
+@media only screen and (max-width: 900px)
+{
+    #mainNav > ol > li
+    {
+        display: none;
+        width: 100%;
+    }
+
+    #mainNav > ol > li:first-child
+    {
+        display: block;
+    }
+
+    #mainNav > ol:hover > li
+    {
+        display: block;
+    }
+
+    #mainNav > ol > li > ul
+    {
+        position: static;
+        width: 100%;
+    }
+
+    .footerItem
+    {
+        width: 100%;
+    }
+
+    .footerItemImg
+    {
+        float: left;
+        padding: 0 2%;
+        text-align: right;
+        width: 46%;
+    }
+    
+    .footerItemDesc
+    {
+        float: left;
+        font-size: 22px;
+        line-height: 200%;
+        padding: 0 2%;
+        text-align: left;
+        width: 46%;
+    }
+}
