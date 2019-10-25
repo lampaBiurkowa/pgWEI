@@ -39,3 +39,21 @@
 {
     text-align: center;
 }
+
+.chooseTeamButton
+{
+    border: none;
+    background-color: #00bb77;
+    font-size: 20px;
+    margin: 5px;
+    padding: 5px;
+    width: 300px;
+}
+
+.chooseTeamButton:hover
+{
+    background-color: #00dd99;
+    cursor: pointer;
+    transition: background-color;
+    transition-duration: 0.3s;
+}

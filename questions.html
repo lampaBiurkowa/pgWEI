@@ -12,17 +12,17 @@
                 <div id="mainNav">
                     <ol>
                         <li><a id="mainHeader" href="index.html"><span id="mainHeaderText">IV Liga Pomorska</span></a></li>
-                        <li><a href="#">Logowanie</a></li>
+                        <li><a href="questions.html">Ankieta</a></li>
                         <li><a href="teams.html">Drużyny</a></li>
                         <li>
                             <a href="#">Statystyki</a>
                             <ul>
-                                <li><a href="#">Tabele</a></li>
-                                <li><a href="#">Strzelcy</a></li>
+                                <li><a href="table.html">Tabele</a></li>
+                                <li><a href="strikers.html">Strzelcy</a></li>
                             </ul>
                             <div style="clear:both"></div>
                         </li>
-                        <li><a href="#">Galeria</a></li>
+                        <li><a href="gallery.html">Galeria</a></li>
                     </ol>
                     <div style="clear:both"></div>
                 </div>
@@ -34,145 +34,133 @@
                     <h1>Ankieta</h1>
                 </div>
             </header>
-            <div id="content">
-                <section>
-                    <form class="commonForm">
-                        <header>
-                            <div class="commonHeader">
-                                <h3>Podziel się z nami twoim zainteresowaniem ligą!</h3>
-                            </div>
-                        </header>
-                        <label>
-                            <div class="inputLabel inputArea">
-                                Imię:
-                            </div>
-                            <div class="inputField inputArea">
-                                <input type="text">
-                            </div>
-                        </label>
-                        <label>
-                            <div class="inputLabel inputArea">
-                                Nazwisko:
-                            </div>
-                            <div class="inputField inputArea">
-                                <input type="text">
-                            </div>
-                        </label>
-                        <label>
-                            <div class="inputLabel inputArea">
-                                E-mail:
-                            </div>
-                            <div class="inputField inputArea">
-                                <input type="email">
-                            </div>
-                        </label>
-                        <label>
-                            <div class="inputLabel inputArea">
-                                Wiek:
-                            </div>
-                            <div class="inputField inputArea">
-                                <input type="number">
-                            </div>
-                        </label>
-                        <span class="chooseSection">
-                            Jak często śledzisz wyniki ligi?:
-                            <div class="inputArea">
-                                <label class="blockItem">
-                                    <input type="radio" name="frequency"> Co każdą kolejkę
-                                </label>
-                            </div>
-                            <div class="inputArea">
-                                <label class="blockItem">
-                                    <input type="radio" name="frequency"> Co miesiąc
-                                </label>
-                            </div>
-                            <div class="inputArea">
-                                <label class="blockItem">
-                                    <input type="radio" name="frequency"> Nigdy
-                                </label>
-                            </div>
-                        </span>
-                        <span class="chooseSection">
-                            Co doceniasz w lidze?:
-                            <div class="inputArea">
-                                <label class="blockItem">
-                                    <input type="checkbox"> Zaangażowanie piłkarzy
-                                </label>
-                            </div>
-                            <div class="inputArea">
-                                <label class="blockItem">
-                                    <input type="checkbox"> Zaangażowanie kibiców
-                                </label>
-                            </div>
-                            <div class="inputArea">
-                                <label class="blockItem">
-                                    <input type="checkbox"> Emocje na meczach
-                                </label>
-                            </div>
-                            <div class="inputArea">
-                                <label class="blockItem">
-                                    <input type="checkbox"> Szacunek między drużynami
-                                </label>
-                            </div>
-                        </span>
-                        <label>
-                            <div class="inputLabel inputArea">
-                                Moja ulubiona drużyna to:
-                            </div>
-                            <div class="inputField inputArea">
-                                <input list="teamsOptions">
-                            </div>
-                        </label>
+            <section>
+                <form class="commonForm">
+                    <header>
+                        <div class="commonHeader">
+                            <h3>Podziel się z nami twoim zainteresowaniem ligą!</h3>
+                        </div>
+                    </header>
+                    <div class="inputLabel inputArea">
+                        <label for="firstNameInput">Imię:</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" id="firstNameInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="surnameInput">Nazwisko:</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" id="surnameInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="emailInput">E-mail:</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="email" id="emailInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="ageInput">Wiek:</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="number" id="ageInput">
+                    </div>
+                    <div class="chooseSection">
+                        Jak często śledzisz wyniki ligi?:
+                        <div class="inputArea">
+                            <label class="blockItem">
+                                <input type="radio" name="frequency"> Co każdą kolejkę
+                            </label>
+                        </div>
+                        <div class="inputArea">
+                            <label class="blockItem">
+                                <input type="radio" name="frequency"> Co miesiąc
+                            </label>
+                        </div>
+                        <div class="inputArea">
+                            <label class="blockItem">
+                                <input type="radio" name="frequency"> Nigdy
+                            </label>
+                        </div>
+                    </div>
+                    <div class="chooseSection">
+                        Co doceniasz w lidze?:
+                        <div class="inputArea">
+                            <label class="blockItem">
+                                <input type="checkbox"> Zaangażowanie piłkarzy
+                            </label>
+                        </div>
+                        <div class="inputArea">
+                            <label class="blockItem">
+                                <input type="checkbox"> Zaangażowanie kibiców
+                            </label>
+                        </div>
+                        <div class="inputArea">
+                            <label class="blockItem">
+                                <input type="checkbox"> Emocje na meczach
+                            </label>
+                        </div>
+                        <div class="inputArea">
+                            <label class="blockItem">
+                                <input type="checkbox"> Szacunek między drużynami
+                            </label>
+                        </div>
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="favouriteTeamInput">Moja ulubiona drużyna to:</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input list="teamsOptions" id="favouriteTeamInput">
+                    </div>
 
-                        <datalist id="teamsOptions">
-                            <option>Gryf Słupsk</option>
-                            <option>Arka II Gdynia</option>
-                            <option>GKS Przodkowo</option>
-                            <option>Kaszubia Kościerzyna</option>
-                            <option>Stolem Gniewino</option>
-                            <option>Powiśle Dzierzgoń</option>
-                            <option>Lechia II Gdańsk</option>
-                            <option>Pogoń Lębork</option>
-                            <option>Wierzyca Pelplin</option>
-                            <option>Cartusia Kartuzy</option>
-                            <option>Wda Lipusz</option>
-                            <option>GKS Kowale</option>
-                            <option>Gwiazda Karsin</option>
-                            <option>Wikęd Luzino</option>
-                            <option>Gedania Gdańsk</option>
-                            <option>Jantar Ustka</option>
-                            <option>Jaguar Gdańsk</option>
-                            <option>Lipniczanka Lipnica</option>
-                        </datalist>
-                        
-                        <button>Wyślij</button>
-                        <button type="button">Wyczyść</button>
-                    </form>
-                </section>
-            </div>
+                    <datalist id="teamsOptions">
+                        <option>Gryf Słupsk</option>
+                        <option>Arka II Gdynia</option>
+                        <option>GKS Przodkowo</option>
+                        <option>Kaszubia Kościerzyna</option>
+                        <option>Stolem Gniewino</option>
+                        <option>Powiśle Dzierzgoń</option>
+                        <option>Lechia II Gdańsk</option>
+                        <option>Pogoń Lębork</option>
+                        <option>Wierzyca Pelplin</option>
+                        <option>Cartusia Kartuzy</option>
+                        <option>Wda Lipusz</option>
+                        <option>GKS Kowale</option>
+                        <option>Gwiazda Karsin</option>
+                        <option>Wikęd Luzino</option>
+                        <option>Gedania Gdańsk</option>
+                        <option>Jantar Ustka</option>
+                        <option>Jaguar Gdańsk</option>
+                        <option>Lipniczanka Lipnica</option>
+                    </datalist>
+                    
+                    <button>Wyślij</button>
+                    <button type="reset">Wyczyść</button>
+                </form>
+            </section>
         </main>
         <footer>
             <div id="footer">
                 <div class="footerItem">
                     <div class="footerItemImg">
-                        <img src="img/error.png" alt="Zgłoś Błąd">
+                        <img src="img/wai.png" alt="WAI">
                     </div>
                     <div class="footerItemDesc">
-                        Zgłoś błąd
+                        Wytwarzanie aplikacji internetowych
                     </div>
                 </div>
                 <div class="footerItem">
                     <div class="footerItemImg">
-                        <img src="img/change.png" alt="Ustawienia">
+                        <img src="img/change.png" alt="s180182">
                     </div>
                     <div class="footerItemDesc">
-                        Ustawienia
+                        s180182
                     </div>
                 </div>
                 <div class="footerItem">
                     <a href="mailto:s180182@student.pg.edu.pl">
                         <div class="footerItemImg">
-                                <img src="img/contact.png" alt="Kontakt">
+                            <img src="img/contact.png" alt="Kontakt">
                         </div>
                         <div class="footerItemDesc">
                             Kontakt

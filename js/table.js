@@ -1,12 +1,17 @@
 const CHOSEN_TEAMS_STORAGE_NAME = "chosen";
 const TEAMS_COUNT = 18;
 var activated = false;
+var teams = ["Gryf Słupsk", "Arka II Gdynia", "GKS Przodkowo", "Kaszubia Kościerzyna",
+"Stolem Gniewino", "Powiśle Dzierzgoń", "Lechia II Gdańsk", "Pogoń Lębork",
+"Wierzyca Pelplin", "Cartusia Kartuzy", "Wda Lipusz", "GKS Kowale",
+"Gwiazda Karsin", "Wikęd Luzino", "Gedania Gdańsk", "Jantar Ustka",
+"Jaguar Gdańsk", "Lipniczanka Lipnica"];
 
 function generateForm()
 {
     var html = "";
     for (var i = 0; i < TEAMS_COUNT; i++)
-        html += "<button onclick=\"chooseTeam(" + i + ")\"> Zespół na miejscu nr" + i + "</button><br/>";
+        html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teams[i] + " </button><br/>";
 
     return html;
 }
@@ -67,5 +72,17 @@ function updateChosenTeamsData()
         return;
 
     var teams = getChosenTeams();
-    element.innerHTML = arrayToStr(teams);
+    element.innerHTML = arrayToStrWithTeamNames(teams);
+}
+
+function arrayToStrWithTeamNames(array)
+{
+    var dataToSave = "";
+    for (var i = 0; i < array.length; i++)
+        if (i != array.length - 1)
+            dataToSave += teams[array[i]] + ",";
+        else
+            dataToSave += teams[array[i]];
+
+    return dataToSave;
 }
