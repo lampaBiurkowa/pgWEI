@@ -1,5 +1,5 @@
 const FAVOURITE_TEAM_STORAGE_NAME = "favouriteTeam";
-const TEAMS_COUNT = 18;
+const TEAMS_COUNT = 19;
 const ACTIVE_COLOR = "#00cc00";
 const INACTIVE_COLOR = "#eeeeee";
 

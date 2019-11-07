@@ -54,7 +54,7 @@
 .commonButton
 {
     background-color: #00aa66;
-    border: none;
+    border: solid #004400 1px;
     font-size: 20px;
     margin: 10px;
     padding: 10px;
@@ -63,5 +63,11 @@
 
 .commonButton:hover
 {
+    background-color: #00bb77;
     cursor: pointer;
+}
+
+.commonButton:focus
+{
+    outline: none;
 }

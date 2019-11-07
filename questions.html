@@ -5,6 +5,10 @@
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/forms.css">
+        <link rel="stylesheet" href="jsui/jquery-ui.css">
+        <script src="js/jq.js"></script>
+        <script src="jsui/jquery-ui.min.js"></script>
+        <script src="js/gui.js"></script>
     </head>
     <body>
         <header>
@@ -45,25 +49,25 @@
                         <label for="firstNameInput">Imię:</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="text" id="firstNameInput">
+                        <input type="text" id="firstNameInput" title="Twoje imię">
                     </div>
                     <div class="inputLabel inputArea">
                         <label for="surnameInput">Nazwisko:</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="text" id="surnameInput">
+                        <input type="text" id="surnameInput" title="Twoje nazwisko">
                     </div>
                     <div class="inputLabel inputArea">
                         <label for="emailInput">E-mail:</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="email" id="emailInput">
+                        <input type="email" id="emailInput" title="Twój e-mail">
                     </div>
                     <div class="inputLabel inputArea">
                         <label for="ageInput">Wiek:</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="number" id="ageInput">
+                        <input type="number" id="ageInput" title="Twój wiek">
                     </div>
                     <div class="chooseSection">
                         Jak często śledzisz wyniki ligi?:
@@ -110,7 +114,7 @@
                         <label for="favouriteTeamInput">Moja ulubiona drużyna to:</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input list="teamsOptions" id="favouriteTeamInput">
+                        <input list="teamsOptions" id="favouriteTeamInput" title="Której ekipie kibicujesz najbardziej?">
                     </div>
 
                     <datalist id="teamsOptions">
@@ -134,9 +138,13 @@
                         <option>Lipniczanka Lipnica</option>
                     </datalist>
                     
-                    <button>Wyślij</button>
-                    <button type="reset">Wyczyść</button>
+                    <button class="commonButton">Wyślij</button>
+                    <button type="button" class="commonButton" onclick="showDialogBox()">Pomoc</button>
+                    <button type="reset" class="commonButton">Wyczyść</button>
                 </form>
+                <div id="dialogBox" title="Pomoc">
+                    Aniketa ma na celu lepsze poznanie opinii kibiców o lidze. Twoje dane pomogą w uzupełnieniu naszej bazy danych.
+                </div>
             </section>
         </main>
         <footer>

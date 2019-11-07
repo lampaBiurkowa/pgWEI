@@ -1,0 +1,9 @@
+$(document).ready(
+function()
+{
+    $("#fadeableHeader").click(
+    function()
+    {
+        $("#fadeableHeader").fadeOut(1500);
+    });
+});
