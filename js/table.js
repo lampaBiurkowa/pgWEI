@@ -1,17 +1,33 @@
 const CHOSEN_TEAMS_STORAGE_NAME = "chosen";
 const TEAMS_COUNT = 18;
+const MAX_TEAMS_TO_CHOOSE = 3;
 var activated = false;
-var teams = ["Gryf Słupsk", "Arka II Gdynia", "GKS Przodkowo", "Kaszubia Kościerzyna",
+var teamNames = ["Gryf Słupsk", "Arka II Gdynia", "GKS Przodkowo", "Kaszubia Kościerzyna",
 "Stolem Gniewino", "Powiśle Dzierzgoń", "Lechia II Gdańsk", "Pogoń Lębork",
 "Wierzyca Pelplin", "Cartusia Kartuzy", "Wda Lipusz", "GKS Kowale",
 "Gwiazda Karsin", "Wikęd Luzino", "Gedania Gdańsk", "Jantar Ustka",
 "Jaguar Gdańsk", "Lipniczanka Lipnica"];
 
+$(function init()
+{
+    var element = document.createElement("button");
+    var onclickAttr = document.createAttribute("onclick");
+    onclickAttr.value = "choose()";
+    var classAttr = document.createAttribute("class");
+    classAttr.value = "commonButton";
+    element.setAttributeNode(onclickAttr);
+    element.setAttributeNode(classAttr);
+    element.innerHTML = "Wybierz " + MAX_TEAMS_TO_CHOOSE + " zespoły do zapisania w pamięci sesji";
+
+    var parent = document.getElementById("choosingArea");
+    parent.appendChild(element); 
+});
+
 function generateForm()
 {
     var html = "";
     for (var i = 0; i < TEAMS_COUNT; i++)
-        html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teams[i] + " </button><br/>";
+        html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
 
     return html;
 }
@@ -27,7 +43,22 @@ function choose()
     var idAttr = document.createAttribute("id");
     idAttr.value = "chosenTeams";
     element.setAttributeNode(idAttr);
-    element.innerHTML = "Wybrano: <span id=\"chosenData\">" + getChosenTeams().length + "</span><br/>" + generateForm();
+    var chosenTeams = getChosenTeams();
+    if (chosenTeams.length == 0)
+        element.innerHTML = "<span id=\"chosenData\">Nie wybrano zespołów</span><br/>";
+    else
+    {
+        element.innerHTML = "<span id=\"chosenData\">Wybrano: ";
+        for (var i = 0; i < chosenTeams.length; i++)
+        {
+            element.innerHTML += teamNames[chosenTeams[i]];
+            if (i + 1 != chosenTeams.length)
+                element.innerHTML += ", ";
+        }
+    }
+    element.innerHTML += "</span><br/>";
+    if (chosenTeams.length != MAX_TEAMS_TO_CHOOSE)
+        element.innerHTML += generateForm();
 
     var parent = document.getElementById("choosingArea");
     parent.appendChild(element);
@@ -45,7 +76,7 @@ function getChosenTeams()
 function chooseTeam(teamId)
 {
     var teams = getChosenTeams();
-    if (teams.length >= 3)
+    if (teams.length >= MAX_TEAMS_TO_CHOOSE)
         return;
 
     teams.push(teamId);
@@ -72,7 +103,7 @@ function updateChosenTeamsData()
         return;
 
     var teams = getChosenTeams();
-    element.innerHTML = arrayToStrWithTeamNames(teams);
+    element.innerHTML = "Wybrano: " + arrayToStrWithTeamNames(teams);
 }
 
 function arrayToStrWithTeamNames(array)
@@ -80,9 +111,9 @@ function arrayToStrWithTeamNames(array)
     var dataToSave = "";
     for (var i = 0; i < array.length; i++)
         if (i != array.length - 1)
-            dataToSave += teams[array[i]] + ",";
+            dataToSave += teamNames[array[i]] + ",";
         else
-            dataToSave += teams[array[i]];
+            dataToSave += teamNames[array[i]];
 
     return dataToSave;
 }
