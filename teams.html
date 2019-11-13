@@ -2,13 +2,14 @@
 <html lang="pl-PL">
     <head>
         <meta charset="UTF-8">
+        <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="css/forms.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/teams.css">
         <script src="js/teams.js"></script>
     </head>
     <body onload="loadFavouriteTeam()">
-        <hedaer>
+        <header>
             <nav>
                 <div id="mainNav">
                     <ol>
@@ -28,7 +29,7 @@
                     <div style="clear:both"></div>
                 </div>
             </nav>
-        </hedaer>
+        </header>
         <main>
             <div id="teamContentWrapper">
                 <div id="teamMainContent">
@@ -81,15 +82,17 @@
                     </p>
                 </div>
                 <aside>
-                    <ul id="teamList">
+                    <div class="commonHeader">
                         <h3>Wybierz ulubioną drużynę</h3>
+                    </div>
+                    <div id="teamList">
                         <form>
                             <div class="team">
                                 <div class="teamRadio">
-                                    <input type="radio" id="teamRadio1" name="favouriteTeam"  onclick="setFavouriteTeam(1)">
+                                    <input type="radio" name="favouriteTeam" id="teamRadio1"  onclick="setFavouriteTeam(1)">
                                 </div>
-                                <label for="1">
-                                    <div class="teamDesc" id="teamDesc1">Gryf Słupsk</div>
+                                <label for="teamRadio1">
+                                    <span class="teamDesc" id="teamDesc1">Gryf Słupsk</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -97,8 +100,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio2" onclick="setFavouriteTeam(2)">
                                 </div>
-                                <label for="2">
-                                    <div class="teamDesc" id="teamDesc2">Gedania Gdańsk</div>
+                                <label for="teamRadio2">
+                                    <span class="teamDesc" id="teamDesc2">Gedania Gdańsk</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -106,8 +109,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio3" onclick="setFavouriteTeam(3)">
                                 </div>
-                                <label for="3">
-                                    <div class="teamDesc" id="teamDesc3">Lechia II Gdańsk</div>
+                                <label for="teamRadio3">
+                                    <span class="teamDesc" id="teamDesc3">Lechia II Gdańsk</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -115,8 +118,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio4" onclick="setFavouriteTeam(4)">
                                 </div>
-                                <label for="4">
-                                    <div class="teamDesc" id="teamDesc4">Jaguar Gdańsk</div>
+                                <label for="teamRadio4">
+                                    <span class="teamDesc" id="teamDesc4">Jaguar Gdańsk</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -124,8 +127,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio5"  onclick="setFavouriteTeam(5)">
                                 </div>
-                                <label for="5">
-                                    <div class="teamDesc" id="teamDesc5">Arka II Gdynia</div>
+                                <label for="teamRadio5">
+                                    <span class="teamDesc" id="teamDesc5">Arka II Gdynia</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -133,8 +136,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio6" onclick="setFavouriteTeam(6)">
                                 </div>
-                                <label for="6">
-                                    <div class="teamDesc" id="teamDesc6">Cartusia Kartuzy</div>
+                                <label for="teamRadio6">
+                                    <span class="teamDesc" id="teamDesc6">Cartusia Kartuzy</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -142,8 +145,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio7" onclick="setFavouriteTeam(7)">
                                 </div>
-                                <label for="7">
-                                    <div class="teamDesc" id="teamDesc7">Gwiazda Karsin</div>
+                                <label for="teamRadio7">
+                                    <span class="teamDesc" id="teamDesc7">Gwiazda Karsin</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -151,8 +154,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio8" onclick="setFavouriteTeam(8)">
                                 </div>
-                                <label for="8">
-                                    <div class="teamDesc" id="teamDesc8">Kaszubia Kościerzyna</div>
+                                <label for="teamRadio8">
+                                    <span class="teamDesc" id="teamDesc8">Kaszubia Kościerzyna</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -160,8 +163,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio9" onclick="setFavouriteTeam(9)">
                                 </div>
-                                <label for="9">
-                                    <div class="teamDesc" id="teamDesc9">Lipniczanka Lipnica</div>
+                                <label for="teamRadio9">
+                                    <span class="teamDesc" id="teamDesc9">Lipniczanka Lipnica</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -169,8 +172,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio10" onclick="setFavouriteTeam(10)">
                                 </div>
-                                <label for="10">
-                                    <div class="teamDesc" id="teamDesc10">Stolem Gniewino</div>
+                                <label for="teamRadio10">
+                                    <span class="teamDesc" id="teamDesc10">Stolem Gniewino</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -178,8 +181,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio11" onclick="setFavouriteTeam(11)">
                                 </div>
-                                <label for="11">
-                                    <div class="teamDesc" id="teamDesc11">GKS Przodkowo</div>
+                                <label for="teamRadio11">
+                                    <span class="teamDesc" id="teamDesc11">GKS Przodkowo</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -187,8 +190,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio12" onclick="setFavouriteTeam(12)">
                                 </div>
-                                <label for="12">
-                                    <div class="teamDesc" id="teamDesc12">GKS Kowale</div>
+                                <label for="teamRadio12">
+                                    <span class="teamDesc" id="teamDesc12">GKS Kowale</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -196,8 +199,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio13" onclick="setFavouriteTeam(13)">
                                 </div>
-                                <label for="13">
-                                    <div class="teamDesc" id="teamDesc13">Pogoń Lębork</div>
+                                <label for="teamRadio13">
+                                    <span class="teamDesc" id="teamDesc13">Pogoń Lębork</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -205,8 +208,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio14" onclick="setFavouriteTeam(14)">
                                 </div>
-                                <label for="14">
-                                    <div class="teamDesc" id="teamDesc14">Wikęd Luzino</div>
+                                <label for="teamRadio14">
+                                    <span class="teamDesc" id="teamDesc14">Wikęd Luzino</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -214,8 +217,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio15" onclick="setFavouriteTeam(15)">
                                 </div>
-                                <label for="15">
-                                    <div class="teamDesc" id="teamDesc15">Powiśle Dzierzgoń</div>
+                                <label for="teamRadio15">
+                                    <span class="teamDesc" id="teamDesc15">Powiśle Dzierzgoń</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -223,8 +226,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio16" onclick="setFavouriteTeam(16)">
                                 </div>
-                                <label for="16">
-                                    <div class="teamDesc" id="teamDesc16">Jantar Ustka</div>
+                                <label for="teamRadio16">
+                                    <span class="teamDesc" id="teamDesc16">Jantar Ustka</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -232,8 +235,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio17" onclick="setFavouriteTeam(17)">
                                 </div>
-                                <label for="17">
-                                    <div class="teamDesc" id="teamDesc17">Wierzyca Pelplin</div>
+                                <label for="teamRadio17">
+                                    <span class="teamDesc" id="teamDesc17">Wierzyca Pelplin</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -241,8 +244,8 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio18" onclick="setFavouriteTeam(18)">
                                 </div>
-                                <label for="18">
-                                    <div class="teamDesc" id="teamDesc18">GKS Kolbudy</div>
+                                <label for="teamRadio18">
+                                    <span class="teamDesc" id="teamDesc18">GKS Kolbudy</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
@@ -250,14 +253,14 @@
                                 <div class="teamRadio">
                                     <input type="radio" name="favouriteTeam" id="teamRadio19" onclick="setFavouriteTeam(19)">
                                 </div>
-                                <label for="19">
-                                    <div class="teamDesc" id="teamDesc19">Wda Lipusz</div>
+                                <label for="teamRadio19">
+                                    <span class="teamDesc" id="teamDesc19">Wda Lipusz</span>
                                 </label>
                                 <div style="clear:both"></div>
                             </div>
                             <div style="clear:both"></div>
                         </form>
-                    </ul>    
+                    </div>    
                 </aside>
             </div>
         </main>

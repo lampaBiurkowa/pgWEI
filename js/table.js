@@ -1,41 +1,37 @@
 const CHOSEN_TEAMS_STORAGE_NAME = "chosen";
 const TEAMS_COUNT = 18;
 const MAX_TEAMS_TO_CHOOSE = 3;
-var activated = false;
+
+var chooseTeamFormActivated = false;
 var teamNames = ["Gryf Słupsk", "Arka II Gdynia", "GKS Przodkowo", "Kaszubia Kościerzyna",
 "Stolem Gniewino", "Powiśle Dzierzgoń", "Lechia II Gdańsk", "Pogoń Lębork",
 "Wierzyca Pelplin", "Cartusia Kartuzy", "Wda Lipusz", "GKS Kowale",
 "Gwiazda Karsin", "Wikęd Luzino", "Gedania Gdańsk", "Jantar Ustka",
 "Jaguar Gdańsk", "Lipniczanka Lipnica"];
 
-$(function init()
+$(document).ready(
+function init()
 {
     var element = document.createElement("button");
+
     var onclickAttr = document.createAttribute("onclick");
     onclickAttr.value = "choose()";
+    element.setAttributeNode(onclickAttr);
+
     var classAttr = document.createAttribute("class");
     classAttr.value = "commonButton";
-    element.setAttributeNode(onclickAttr);
     element.setAttributeNode(classAttr);
+
     element.innerHTML = "Wybierz " + MAX_TEAMS_TO_CHOOSE + " zespoły do zapisania w pamięci sesji";
 
     var parent = document.getElementById("choosingArea");
     parent.appendChild(element); 
 });
 
-function generateForm()
-{
-    var html = "";
-    for (var i = 0; i < TEAMS_COUNT; i++)
-        html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
-
-    return html;
-}
-
 function choose()
 {
-    if (!activated)
-        activated = true;
+    if (!chooseTeamFormActivated)
+        chooseTeamFormActivated = true;
     else
         return;
 
@@ -43,25 +39,33 @@ function choose()
     var idAttr = document.createAttribute("id");
     idAttr.value = "chosenTeams";
     element.setAttributeNode(idAttr);
-    var chosenTeams = getChosenTeams();
-    if (chosenTeams.length == 0)
-        element.innerHTML = "<span id=\"chosenData\">Nie wybrano zespołów</span><br/>";
-    else
-    {
-        element.innerHTML = "<span id=\"chosenData\">Wybrano: ";
-        for (var i = 0; i < chosenTeams.length; i++)
-        {
-            element.innerHTML += teamNames[chosenTeams[i]];
-            if (i + 1 != chosenTeams.length)
-                element.innerHTML += ", ";
-        }
-    }
-    element.innerHTML += "</span><br/>";
-    if (chosenTeams.length != MAX_TEAMS_TO_CHOOSE)
-        element.innerHTML += generateForm();
+    element.innerHTML = getChosenTeamsDivInnerHTML();
 
     var parent = document.getElementById("choosingArea");
     parent.appendChild(element);
+}
+
+function getChosenTeamsDivInnerHTML()
+{
+    var innerHTML;
+    var chosenTeams = getChosenTeams();
+    if (chosenTeams.length == 0)
+        innerHTML = "<span id=\"chosenData\">Nie wybrano zespołów</span><br/>";
+    else
+    {
+        innerHTML = "<span id=\"chosenData\">Wybrano: ";
+        for (var i = 0; i < chosenTeams.length; i++)
+        {
+            innerHTML += teamNames[chosenTeams[i]];
+            if (i + 1 != chosenTeams.length)
+                innerHTML += ", ";
+        }
+    }
+    innerHTML += "</span><br/>";
+    if (chosenTeams.length != MAX_TEAMS_TO_CHOOSE)
+        innerHTML += generateForm();
+
+    return innerHTML;
 }
 
 function getChosenTeams()
@@ -71,6 +75,15 @@ function getChosenTeams()
         value = sessionStorage.getItem(CHOSEN_TEAMS_STORAGE_NAME);
 
     return value ? value.split(",") : [];
+}
+
+function generateForm()
+{
+    var html = "";
+    for (var i = 0; i < TEAMS_COUNT; i++)
+        html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
+
+    return html;
 }
 
 function chooseTeam(teamId)
