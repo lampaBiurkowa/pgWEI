@@ -27,7 +27,7 @@ function init()
 
     var parent = document.getElementById("choosingArea");
     parent.appendChild(element); 
-}); 
+});
 
 function choose()
 {
@@ -88,13 +88,14 @@ function generateForm()
 {
     var html = "<span id=\"" + TEAM_BUTTONS_SPAN_ID + "\">";
     for (var i = 0; i < TEAMS_COUNT; i++)
-        html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
+        html += "<button id=\"chooseTeamButton" + i + "\" class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
 
     return html + "</span>";
 }
 
 function chooseTeam(teamId)
 {
+    document.getElementById("chooseTeamButton" + teamId).setAttribute("disabled", true);
     var teams = getChosenTeams();
     if (teams.length >= MAX_TEAMS_TO_CHOOSE)
         return;
