@@ -99,11 +99,24 @@ function chooseTeam(teamId)
     if (teams.length >= MAX_TEAMS_TO_CHOOSE)
         return;
 
+    if (teamAlreadyAdded(teamId))
+        return;
+
     teams.push(teamId);
     sessionStorage.setItem(CHOSEN_TEAMS_STORAGE_NAME, arrayToStr(teams));
     updateChosenTeamsData();
     if (teams.length == MAX_TEAMS_TO_CHOOSE)
         destroyForm();
+}
+
+function teamAlreadyAdded(teamId)
+{
+    var teams = getChosenTeams();
+    for (var i = 0; i < teams.length; i++)
+        if (teams[i] == teamId)
+            return true;
+
+    return false;
 }
 
 function destroyForm()
