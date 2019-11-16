@@ -27,7 +27,7 @@ function init()
 
     var parent = document.getElementById("choosingArea");
     parent.appendChild(element); 
-});
+}); 
 
 function choose()
 {
