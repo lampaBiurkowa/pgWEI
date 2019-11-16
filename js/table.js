@@ -1,4 +1,5 @@
 const CHOSEN_TEAMS_STORAGE_NAME = "chosen";
+const TEAM_BUTTONS_SPAN_ID = "teamButtons";
 const TEAMS_COUNT = 18;
 const MAX_TEAMS_TO_CHOOSE = 3;
 
@@ -79,11 +80,11 @@ function getChosenTeams()
 
 function generateForm()
 {
-    var html = "";
+    var html = "<span id=\"" + TEAM_BUTTONS_SPAN_ID + "\">";
     for (var i = 0; i < TEAMS_COUNT; i++)
         html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
 
-    return html;
+    return html + "</span>";
 }
 
 function chooseTeam(teamId)
@@ -95,6 +96,14 @@ function chooseTeam(teamId)
     teams.push(teamId);
     sessionStorage.setItem(CHOSEN_TEAMS_STORAGE_NAME, arrayToStr(teams));
     updateChosenTeamsData();
+    if (teams.length == MAX_TEAMS_TO_CHOOSE)
+        destroyForm();
+}
+
+function destroyForm()
+{
+    var teamButtons = document.getElementById(TEAM_BUTTONS_SPAN_ID);
+    teamButtons.remove();
 }
 
 function arrayToStr(array)

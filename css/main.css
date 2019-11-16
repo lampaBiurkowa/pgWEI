@@ -221,7 +221,7 @@ a
         float: left;
         padding: 0 2%;
         text-align: right;
-        width: 46%;
+        width: 36%;
     }
     
     .footerItemDesc
@@ -231,6 +231,6 @@ a
         line-height: 200%;
         padding: 0 2%;
         text-align: left;
-        width: 46%;
+        width: 56%;
     }
 }
