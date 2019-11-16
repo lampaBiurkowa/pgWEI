@@ -187,6 +187,13 @@ a
     text-align: center;
 }
 
+#slider
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
 @media only screen and (max-width: 900px)
 {
     #mainNav > ol > li

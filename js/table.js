@@ -48,25 +48,31 @@ function choose()
 
 function getChosenTeamsDivInnerHTML()
 {
-    var innerHTML;
     var chosenTeams = getChosenTeams();
-    if (chosenTeams.length == 0)
-        innerHTML = "<span id=\"chosenData\">Nie wybrano zespołów</span><br/>";
-    else
-    {
-        innerHTML = "<span id=\"chosenData\">Wybrano: ";
-        for (var i = 0; i < chosenTeams.length; i++)
-        {
-            innerHTML += teamNames[chosenTeams[i]];
-            if (i + 1 != chosenTeams.length)
-                innerHTML += ", ";
-        }
-    }
+    var innerHTML = generateChosenTeamsText(chosenTeams);
     innerHTML += "</span><br/>";
     if (chosenTeams.length != MAX_TEAMS_TO_CHOOSE)
         innerHTML += generateForm();
 
     return innerHTML;
+}
+
+function generateChosenTeamsText(chosenTeams)
+{
+    var html;
+    if (chosenTeams.length == 0)
+        html = "<span id=\"chosenData\">Nie wybrano zespołów</span><br/>";
+    else
+    {
+        html = "<span id=\"chosenData\">Wybrano: ";
+        for (var i = 0; i < chosenTeams.length; i++)
+        {
+            html += teamNames[chosenTeams[i]];
+            if (i + 1 != chosenTeams.length)
+                html += ", ";
+        }
+    }
+    return html;
 }
 
 function getChosenTeams()
