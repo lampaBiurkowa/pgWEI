@@ -1,18 +1,30 @@
 <?php
 require_once "GenericController.php";
 require_once "../Other/Dispatcher.php";
+require_once "../Other/PhotoModifier.php";
+require_once "../DBHandler/DBHandler.php";
 
 class GalleryController extends GenericController
 {
+    private $baseName = null;
+
     public function HandleRequest():string
     {
         if (!$this -> isFormComplete())
             return Dispatcher::GetRouteName("/gallery");
 
+        $this -> baseName = (string)(DBHandler::GetPhotoCount() + 1);
+
         if (!$this -> isFileCorrect())
             return Dispatcher::GetRouteName("/gallery");
 
-        $this -> trySaveFile();
+        if (!$this -> trySaveFile())
+            return Dispatcher::GetRouteName("/gallery");
+
+        $this -> createModifiedPhotoVersions();
+
+        DBHandler::AddPhoto(new PhotoModel($_POST[Constants::POST_SEND_AUTHOR], $this -> baseName, $_POST[Constants::POST_SEND_TITLE]));
+
         return Dispatcher::GetRouteName("/gallery");
     }
 
@@ -32,7 +44,7 @@ class GalleryController extends GenericController
 
     private function isFileCorrect():bool
     {
-        $mimeType = $this -> getMimeType();
+        $mimeType = $this -> getMimeType($_FILES[Constants::FILES_SEND_FILE]["tmp_name"]);
         if ($mimeType != Constants::FORMAT_PNG && $mimeType != Constants::FORMAT_JPG)
         {
             $_SESSION[Constants::SESSION_ID_ERROR] = Constants::ERROR_FILE_FORMAT_INCORRECT;
@@ -48,25 +60,36 @@ class GalleryController extends GenericController
         return true;
     }
 
-    private function getMimeType():string
+    private function getMimeType($filePath):string
     {
-        $file = $_FILES[Constants::FILES_SEND_FILE];
         $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
-        $fileName = $file["tmp_name"];
-        return finfo_file($fileInfo, $fileName);
+        return finfo_file($fileInfo, $filePath);
+    }
+
+    private function getDestinationPath():string
+    {
+        $originalName = $_FILES[Constants::FILES_SEND_FILE]["name"];
+        $dotIndex = strrpos($originalName, ".");
+        $extension = substr($originalName, $dotIndex);
+        return Constants::FILES_DEST_PATH."/".$this -> baseName.$extension;
     }
 
     private function trySaveFile():bool
     {
-        $file = $_FILES[Constants::FILES_SEND_FILE];
-
-        $destinationPath = Constants::FILES_DEST_PATH."/".basename($file["name"]);
-        if (!move_uploaded_file($file["tmp_name"], $destinationPath))
+        if (!move_uploaded_file($_FILES[Constants::FILES_SEND_FILE]["tmp_name"], $this -> getDestinationPath()))
         {
             $_SESSION[Constants::SESSION_ID_ERROR] = Constants::ERROR_SAVING_FILE;
             return false;
         }
 
         return true;
+    }
+
+    private function createModifiedPhotoVersions()
+    {
+        $photoModifier = new PhotoModifier();
+        $photoModifier -> CreateThumbnail($this -> getDestinationPath(), $this -> getMimeType($this -> getDestinationPath()));
+        $waterMark = $_POST[Constants::POST_SEND_WATERMARK];
+        $photoModifier -> CreateWaterMark($this -> getDestinationPath(), $this -> getMimeType($this -> getDestinationPath()), $waterMark);
     }
 }

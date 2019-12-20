@@ -1,6 +1,9 @@
 <?php
 
 require_once "../Models/UserModel.php";
+require_once "../Models/PhotoModel.php";
+
+use MongoDB\BSON\ObjectID;
 
 class DBHandler
 {
@@ -11,7 +14,7 @@ class DBHandler
         return $connection -> wai;
     }
 
-    public static function TryAddUser(UserModel $user)
+    public static function TryAddUser(UserModel $user):bool
     {
         $db = self::connect();
 
@@ -29,6 +32,45 @@ class DBHandler
 
         $db -> wai -> insertOne($userData);
         return true;
+    }
+
+    public static function GetPhotoCount():int
+    {
+        $db = self::connect();
+
+        $counter = $db -> wai -> findOne(["function" => "photo"]);
+        if ($counter == null)
+            return 0;
+
+        return $counter["count"];
+    }
+
+    public static function AddPhoto(PhotoModel $user)
+    {
+        $db = self::connect();
+
+        $photoData = [
+            "author" => $user -> GetAuthor(),
+            "name" => $user -> GetName(),
+            "title" => $user -> GetTitle()
+        ];
+
+        $db -> wai -> insertOne($photoData);
+        self::increasePhotoCount();
+    }
+
+    private static function increasePhotoCount()
+    {
+        $db = self::connect();
+
+        $counter = $db -> wai -> findOne(["function" => "photo"]);
+        if ($counter == null)
+            $db -> wau -> insertOne(["function" => "photo", "count" => 0]);
+        else
+        {
+            $counter["count"]++;
+            $db -> wai -> replaceOne(["_id" => new ObjectID($counter["_id"])], $counter);
+        }
     }
 
     public static function LoginIfAuthorizationCorrect(string $login, string $password):bool

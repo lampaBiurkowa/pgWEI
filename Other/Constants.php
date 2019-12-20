@@ -33,4 +33,9 @@ class Constants
     const FORMAT_JPG = "image/jpeg";
     const MAX_BYTES_PER_FILE = 1048576; //1 MiB
     const FILES_DEST_PATH = "/var/www/dev/src/web/images";
+
+    const THUMBNAIL_WIDTH = 200;
+    const THUMBNAIL_HEIGHT = 125;
+    const THUMBNAIL_PREFIX = "_min";
+    const WATERMARK_PREFIX = "_wm";
 }
