@@ -8,12 +8,12 @@ class UserModel
     private $login;
     private $hashedPassword;
 
-    public function __construct($email, $login, $hashedPassword)
+    public function __construct($login, $email, $hashedPassword)
     {
-        $this -> Create($email, $login, $hashedPassword);
+        $this -> Create($login, $email, $hashedPassword);
     }
 
-    public function Create($email, $login, $hashedPassword)
+    public function Create($login, $email, $hashedPassword)
     {
         $this -> email = $email;
         $this -> login = $login;

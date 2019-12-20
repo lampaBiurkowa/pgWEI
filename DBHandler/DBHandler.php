@@ -20,6 +20,7 @@ class DBHandler
             "email" => $user -> GetEmail(),
             "password" => $user -> GetHashedPassword()
         ];
+
         if ($db -> wai -> findOne(["login" => $user -> GetLogin()]) != null)
         {
             $_SESSION[Constants::SESSION_ID_ERROR] = Constants::ERROR_LOGIN_ALREADY_EXISTS;

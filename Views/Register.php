@@ -29,7 +29,7 @@
                         </li>
                         <li><a href="/gallery">Galeria</a></li>
                         <?php
-                        if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || $_SESSION[Constants::SESSION_USER_LOGGED])
+                        if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || !$_SESSION[Constants::SESSION_USER_LOGGED])
                             echo '<li><a href="/login">Zaloguj</a></li>';
                         else
                             echo '<li><a href="/logout">Wyloguj</a></li>';

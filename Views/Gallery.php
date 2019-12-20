@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/forms.css">
         <link rel="stylesheet" href="../css/gallery.css">
     </head>
     <body>
@@ -24,7 +25,7 @@
                         </li>
                         <li><a href="/gallery">Galeria</a></li>
                         <?php
-                        if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || $_SESSION[Constants::SESSION_USER_LOGGED])
+                        if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || !$_SESSION[Constants::SESSION_USER_LOGGED])
                             echo '<li><a href="/login">Zaloguj</a></li>';
                         else
                             echo '<li><a href="/logout">Wyloguj</a></li>';
@@ -38,9 +39,63 @@
             <div id="content">
                 <header>
                     <div class="commonHeader">
-                        <h2>Gallery</h2>
+                        <h2>Galeria</h2>
                     </div>
                 </header>
+                <form class="commonForm" method="POST" action="/gallery" enctype="multipart/form-data">
+                    <header>
+                        <div class="commonHeader">
+                            <h3>Dodaj zdjęcie</h3>
+                        </div>
+                    </header>
+                    <div class="inputLabel inputArea">
+                        <label for="fileInput">Plik</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="file" name="<?= Constants::FILES_SEND_FILE ?>" id="fileInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="waterMarkInput">Znak wodny</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" name="<?= Constants::POST_SEND_WATERMARK ?>" id="waterMarkInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="titleInput">Tytuł</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" name="<?= Constants::POST_SEND_TITLE ?>" id="titleInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="authorInput">Autor</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" name="<?= Constants::POST_SEND_AUTHOR ?>" id="authorInput"
+                            <?php
+                            if (!empty($_SESSION[Constants::SESSION_USER_LOGGED]) && $_SESSION[Constants::SESSION_USER_LOGGED] && !empty($_SESSION[Constants::SESSION_USER_LOGIN]))
+                                echo ' value="'.$_SESSION[Constants::SESSION_USER_LOGIN].'"';
+                            ?>
+                        >
+                    </div>
+                    <?php
+                    if (!empty($_SESSION[Constants::SESSION_USER_LOGGED]) && $_SESSION[Constants::SESSION_USER_LOGGED] && !empty($_SESSION[Constants::SESSION_USER_LOGIN]))
+                        echo '
+                            <input type="radio" name="favouriteTeam" id="radioPublic">
+                            <label for="radioPublic">
+                                Publiczne
+                            </label><br/>
+                            <input type="radio" name="favouriteTeam" id="radioPrivate">
+                            <label for="radioPrivate">
+                                Prywatne
+                            </label><br/>';
+                    ?>
+                    <button class="commonButton">Wyślij</button>
+                    <button type="reset" class="commonButton">Wyczyść</button>
+                    <?php
+                    if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
+                        echo $_SESSION[Constants::SESSION_ID_ERROR];
+                    ?>
+                </form>
                 <section>
                     <div id="gallery">
                         <div class="imgTile">
