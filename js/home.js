@@ -12,4 +12,12 @@ function()
     {
         $("#slideableText").slideUp(1000, "linear");
     });
+
+    $("#slider").slider({
+        slide: function( event, ui )
+        {
+            var value = $("#slider").slider("value");
+            document.getElementById("rateIndicator").innerHTML = value;
+        }
+    });
 });

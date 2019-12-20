@@ -1,4 +1,5 @@
 const CHOSEN_TEAMS_STORAGE_NAME = "chosen";
+const TEAM_BUTTONS_SPAN_ID = "teamButtons";
 const TEAMS_COUNT = 18;
 const MAX_TEAMS_TO_CHOOSE = 3;
 
@@ -47,25 +48,31 @@ function choose()
 
 function getChosenTeamsDivInnerHTML()
 {
-    var innerHTML;
     var chosenTeams = getChosenTeams();
-    if (chosenTeams.length == 0)
-        innerHTML = "<span id=\"chosenData\">Nie wybrano zespołów</span><br/>";
-    else
-    {
-        innerHTML = "<span id=\"chosenData\">Wybrano: ";
-        for (var i = 0; i < chosenTeams.length; i++)
-        {
-            innerHTML += teamNames[chosenTeams[i]];
-            if (i + 1 != chosenTeams.length)
-                innerHTML += ", ";
-        }
-    }
+    var innerHTML = generateChosenTeamsText(chosenTeams);
     innerHTML += "</span><br/>";
     if (chosenTeams.length != MAX_TEAMS_TO_CHOOSE)
         innerHTML += generateForm();
 
     return innerHTML;
+}
+
+function generateChosenTeamsText(chosenTeams)
+{
+    var html;
+    if (chosenTeams.length == 0)
+        html = "<span id=\"chosenData\">Nie wybrano zespołów</span><br/>";
+    else
+    {
+        html = "<span id=\"chosenData\">Wybrano: ";
+        for (var i = 0; i < chosenTeams.length; i++)
+        {
+            html += teamNames[chosenTeams[i]];
+            if (i + 1 != chosenTeams.length)
+                html += ", ";
+        }
+    }
+    return html;
 }
 
 function getChosenTeams()
@@ -79,22 +86,44 @@ function getChosenTeams()
 
 function generateForm()
 {
-    var html = "";
+    var html = "<span id=\"" + TEAM_BUTTONS_SPAN_ID + "\">";
     for (var i = 0; i < TEAMS_COUNT; i++)
-        html += "<button class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
+        html += "<button id=\"chooseTeamButton" + i + "\" class=\"chooseTeamButton\" onclick=\"chooseTeam(" + i + ")\"> " + teamNames[i] + " </button><br/>";
 
-    return html;
+    return html + "</span>";
 }
 
 function chooseTeam(teamId)
 {
+    document.getElementById("chooseTeamButton" + teamId).setAttribute("disabled", true);
     var teams = getChosenTeams();
     if (teams.length >= MAX_TEAMS_TO_CHOOSE)
+        return;
+
+    if (teamAlreadyAdded(teamId))
         return;
 
     teams.push(teamId);
     sessionStorage.setItem(CHOSEN_TEAMS_STORAGE_NAME, arrayToStr(teams));
     updateChosenTeamsData();
+    if (teams.length == MAX_TEAMS_TO_CHOOSE)
+        destroyForm();
+}
+
+function teamAlreadyAdded(teamId)
+{
+    var teams = getChosenTeams();
+    for (var i = 0; i < teams.length; i++)
+        if (teams[i] == teamId)
+            return true;
+
+    return false;
+}
+
+function destroyForm()
+{
+    var teamButtons = document.getElementById(TEAM_BUTTONS_SPAN_ID);
+    teamButtons.remove();
 }
 
 function arrayToStr(array)

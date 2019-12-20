@@ -187,6 +187,13 @@ a
     text-align: center;
 }
 
+#slider
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
 @media only screen and (max-width: 900px)
 {
     #mainNav > ol > li
@@ -221,7 +228,7 @@ a
         float: left;
         padding: 0 2%;
         text-align: right;
-        width: 46%;
+        width: 36%;
     }
     
     .footerItemDesc
@@ -231,6 +238,6 @@ a
         line-height: 200%;
         padding: 0 2%;
         text-align: left;
-        width: 46%;
+        width: 56%;
     }
 }
