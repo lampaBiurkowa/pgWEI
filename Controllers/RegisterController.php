@@ -1,6 +1,7 @@
 <?php
 
 require_once "GenericController.php";
+<<<<<<< HEAD
 require_once "../Models/UserModel.php";
 require_once "../Other/Constants.php";
 
@@ -46,5 +47,20 @@ class RegisterController extends GenericController
             echo "sadads";
         else
             echo "Sraka";
+=======
+
+class RegisterController extends GenericController
+{
+    public function HandleRequest()
+    {
+        $login = $_POST["login"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+    }
+
+    public function Register($login, $email, $password)
+    {
+
+>>>>>>> a99b86bea5e27661b232227aa712399ff378068c
     }
 }
