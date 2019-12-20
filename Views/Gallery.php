@@ -1,15 +1,10 @@
-<?php
-    require_once "../Other/Constants.php";
-?>
-
 <!DOCTYPE HTML>
 <html lang="pl-PL">
     <head>
         <meta charset="UTF-8">
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/forms.css">
-        <link rel="stylesheet" href="../jsui/jquery-ui.min.css">
+        <link rel="stylesheet" href="../css/gallery.css">
     </head>
     <body>
         <header>
@@ -40,51 +35,33 @@
             </nav>
         </header>
         <main>
-            <header>
-                <div class="commonHeader">
-                    <h2>Rejestracja</h2>
-                </div>
-            </header>
-            <section>
-                <form class="commonForm" method="POST" action="/register">
-                    <header>
-                        <div class="commonHeader">
-                            <h3>Zarejestruj się</h3>
+            <div id="content">
+                <header>
+                    <div class="commonHeader">
+                        <h2>Gallery</h2>
+                    </div>
+                </header>
+                <section>
+                    <div id="gallery">
+                        <div class="imgTile">
+                            <img src="../img/gallery/std/img1.png" alt="Football 1">
                         </div>
-                    </header>
-                    <div class="inputLabel inputArea">
-                        <label for="loginInput">Login</label>
+                        <div class="imgTile">
+                            <img src="../img/gallery/std/img2.png" alt="Football 2">
+                        </div>
+                        <div class="imgTile">
+                            <img src="../img/gallery/std/img3.png" alt="Football 3">
+                        </div>
+                        <div class="imgTile">
+                            <img src="../img/gallery/std/img4.png" alt="Football 4">
+                        </div>
+                        <div class="imgTile">
+                            <img src="../img/gallery/std/img5.png" alt="Football 5">
+                        </div>
+                        <div style="clear:both"></div>
                     </div>
-                    <div class="inputField inputArea">
-                        <input type="text" name="<?= Constants::POST_REGISTER_LOGIN ?>" id="loginInput">
-                    </div>
-                    <div class="inputLabel inputArea">
-                        <label for="emailInput">E-mail:</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="email" name="<?= Constants::POST_REGISTER_EMAIL ?>" id="emailInput">
-                    </div>
-                    <div class="inputLabel inputArea">
-                        <label for="passwordInput">Hasło</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="password" name="<?= Constants::POST_REGISTER_PASSWORD ?>" id="passwordInput">
-                    </div>
-                    <div class="inputLabel inputArea">
-                        <label for="repeatPasswordInput">Powtórz hasło</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="password" name="<?= Constants::POST_REGISTER_REPEAT_PASSWORD ?>" id="repeatPasswordInput">
-                    </div>
-
-                    <button class="commonButton">Zarejestruj</button>
-                    <button type="reset" class="commonButton">Wyczyść</button>
-                    <?php
-                        if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
-                            echo $_SESSION[Constants::SESSION_ID_ERROR];
-                    ?>
-                </form>
-            </section>
+                </section>
+            </div>
         </main>
         <footer>
             <div id="footer">

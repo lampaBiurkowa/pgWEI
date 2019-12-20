@@ -6,13 +6,18 @@ class UserModel
     private $email;
     private $id;
     private $login;
-    private $password;
+    private $hashedPassword;
 
-    public function Create($email, $login, $password)
+    public function __construct($email, $login, $hashedPassword)
+    {
+        $this -> Create($email, $login, $hashedPassword);
+    }
+
+    public function Create($email, $login, $hashedPassword)
     {
         $this -> email = $email;
         $this -> login = $login;
-        $this -> password = $password;
+        $this -> hashedPassword = $hashedPassword;
     }
 
     public function GetEmail()
@@ -35,8 +40,8 @@ class UserModel
         return $this -> login;
     }
 
-    public function GetPassword()
+    public function GetHashedPassword()
     {
-        return $this -> password;
+        return $this -> hashedPassword;
     }
 }

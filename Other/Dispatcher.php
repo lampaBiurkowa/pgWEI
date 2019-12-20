@@ -1,16 +1,30 @@
 <?php
 require_once "../Controllers/GenericController.php";
+require_once "../Controllers/ErrorController.php";
+require_once "../Controllers/IndexController.php";
+require_once "../Controllers/LoginController.php";
+require_once "../Controllers/LogoutController.php";
 require_once "../Controllers/RegisterController.php";
+require_once "../Controllers/QuestionsController.php";
+require_once "../Controllers/StrikersController.php";
+require_once "../Controllers/TableController.php";
+require_once "../Controllers/TeamsController.php";
 
 class Dispatcher
 {
     private static $routing = [
-    "/" => "Login",
-    "/login" => "Login",
-    "/register" => "Register",
-    "/error" => "Error",
+        "/" => "Login",
+        "/error" => "Error",
+        "/index" => "Index",
+        "/login" => "Login",
+        "/logout" => "Logout",
+        "/questions" => "Questions",
+        "/register" => "Register",
+        "/strikers" => "Strikers",
+        "/table" => "Table",
+        "/teams" => "Teams"
     ];
-    const REDIRECT_PREFIX = "redirect:";
+    const REDIRECT_PREFIX = "redirect:"; //TODO ?
 
     public function __construct()
     {

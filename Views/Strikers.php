@@ -1,7 +1,3 @@
-<?php
-    require_once "../Other/Constants.php";
-?>
-
 <!DOCTYPE HTML>
 <html lang="pl-PL">
     <head>
@@ -9,7 +5,7 @@
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/forms.css">
-        <link rel="stylesheet" href="../jsui/jquery-ui.min.css">
+        <link rel="stylesheet" href="../css/stats.css">
     </head>
     <body>
         <header>
@@ -42,48 +38,38 @@
         <main>
             <header>
                 <div class="commonHeader">
-                    <h2>Rejestracja</h2>
+                    <h1>Najlepsi strzelcy</h1>
                 </div>
             </header>
             <section>
-                <form class="commonForm" method="POST" action="/register">
-                    <header>
-                        <div class="commonHeader">
-                            <h3>Zarejestruj się</h3>
-                        </div>
-                    </header>
-                    <div class="inputLabel inputArea">
-                        <label for="loginInput">Login</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="text" name="<?= Constants::POST_REGISTER_LOGIN ?>" id="loginInput">
-                    </div>
-                    <div class="inputLabel inputArea">
-                        <label for="emailInput">E-mail:</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="email" name="<?= Constants::POST_REGISTER_EMAIL ?>" id="emailInput">
-                    </div>
-                    <div class="inputLabel inputArea">
-                        <label for="passwordInput">Hasło</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="password" name="<?= Constants::POST_REGISTER_PASSWORD ?>" id="passwordInput">
-                    </div>
-                    <div class="inputLabel inputArea">
-                        <label for="repeatPasswordInput">Powtórz hasło</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="password" name="<?= Constants::POST_REGISTER_REPEAT_PASSWORD ?>" id="repeatPasswordInput">
-                    </div>
-
-                    <button class="commonButton">Zarejestruj</button>
-                    <button type="reset" class="commonButton">Wyczyść</button>
-                    <?php
-                        if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
-                            echo $_SESSION[Constants::SESSION_ID_ERROR];
-                    ?>
-                </form>
+                <div id="strikersList">
+                    <ol>
+                        <li>Tchórz - 10</li>
+                        <li>Włosek - 8</li>
+                        <li>Dutka - 7</li>
+                        <li>Świerk - 7</li>
+                        <li>Czok- 5</li>
+                        <li>Stanowski - 5</li>
+                        <li>Karliński - 5</li>
+                        <li>Kędra - 4</li>
+                        <li>Bajerski - 4</li>
+                        <li>Majka - 4</li>
+                        <li>Tchórz - 4</li>
+                        <li>Włosek - 4</li>
+                        <li>Dutka - 4</li>
+                        <li>Świerk - 3</li>
+                        <li>Czok- 3</li>
+                        <li>Stanowski - 3</li>
+                        <li>Karliński - 3</li>
+                        <li>Kędra - 3</li>
+                        <li>Bajerski - 3</li>
+                        <li>Majka - 3</li>
+                        <li>Bajerski - 3</li>
+                        <li>Majka - 3</li>
+                        <li>Bajerski - 3</li>
+                        <li>Majka - 3</li>
+                    </ol>
+                </div>
             </section>
         </main>
         <footer>

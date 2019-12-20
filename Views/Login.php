@@ -42,42 +42,29 @@
         <main>
             <header>
                 <div class="commonHeader">
-                    <h2>Rejestracja</h2>
+                    <h2>Logowanie</h2>
                 </div>
             </header>
             <section>
-                <form class="commonForm" method="POST" action="/register">
+                <form class="commonForm" method="POST" action="/login">
                     <header>
                         <div class="commonHeader">
-                            <h3>Zarejestruj się</h3>
+                            <h3>Zaloguj się</h3>
                         </div>
                     </header>
                     <div class="inputLabel inputArea">
                         <label for="loginInput">Login</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="text" name="<?= Constants::POST_REGISTER_LOGIN ?>" id="loginInput">
-                    </div>
-                    <div class="inputLabel inputArea">
-                        <label for="emailInput">E-mail:</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="email" name="<?= Constants::POST_REGISTER_EMAIL ?>" id="emailInput">
+                        <input type="text" name="<?= Constants::POST_LOGIN_LOGIN ?>" id="loginInput">
                     </div>
                     <div class="inputLabel inputArea">
                         <label for="passwordInput">Hasło</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="password" name="<?= Constants::POST_REGISTER_PASSWORD ?>" id="passwordInput">
+                        <input type="password" name="<?= Constants::POST_LOGIN_PASSWORD ?>" id="passwordInput">
                     </div>
-                    <div class="inputLabel inputArea">
-                        <label for="repeatPasswordInput">Powtórz hasło</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="password" name="<?= Constants::POST_REGISTER_REPEAT_PASSWORD ?>" id="repeatPasswordInput">
-                    </div>
-
-                    <button class="commonButton">Zarejestruj</button>
+                    <button class="commonButton">Zaloguj</button>
                     <button type="reset" class="commonButton">Wyczyść</button>
                     <?php
                         if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
