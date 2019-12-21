@@ -5,8 +5,10 @@ require_once "../Controllers/GalleryController.php";
 require_once "../Controllers/IndexController.php";
 require_once "../Controllers/LoginController.php";
 require_once "../Controllers/LogoutController.php";
+require_once "../Controllers/PhotoController.php";
 require_once "../Controllers/RegisterController.php";
 require_once "../Controllers/QuestionsController.php";
+require_once "../Controllers/SenderController.php";
 require_once "../Controllers/StrikersController.php";
 require_once "../Controllers/TableController.php";
 require_once "../Controllers/TeamsController.php";
@@ -21,12 +23,15 @@ class Dispatcher
         "/login" => "Login",
         "/logout" => "Logout",
         "/questions" => "Questions",
+        "/photo" => "Photo",
         "/register" => "Register",
+        "/sender" => "Sender",
         "/strikers" => "Strikers",
         "/table" => "Table",
         "/teams" => "Teams"
     ];
     const REDIRECT_PREFIX = "redirect:"; //TODO ?
+    private $controller = null;
 
     public function __construct()
     {
@@ -50,21 +55,20 @@ class Dispatcher
 
     function getViewName(string $actionUrl):string
     {
-        $controller = null;
         $controllerName = self::GetRouteName($actionUrl)."Controller";
 
         try
         {
-            $controller = new $controllerName();
+            $this -> controller = new $controllerName();
         }
         catch (Exception $e)
         {
             return self::$routing["/error"];
         }
-        if (!$controller instanceof GenericController)
+        if (!$this -> controller instanceof GenericController)
             return self::$routing["/error"];
 
-        return $controller -> HandleRequest();
+        return $this -> controller -> HandleRequest();
     }
 
     function handleResponse($viewName)

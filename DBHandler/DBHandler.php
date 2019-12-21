@@ -11,6 +11,7 @@ class DBHandler
     {
         $connection = new MongoDB\Client("mongodb://localhost:27017/wai",
             ["username" => "wai_web","password" => "w@i_w3b",]);
+
         return $connection -> wai;
     }
 
@@ -39,23 +40,27 @@ class DBHandler
         $db = self::connect();
 
         $counter = $db -> wai -> findOne(["function" => "photo"]);
+        echo $counter["count"]."dsfafsadf";
+
         if ($counter == null)
             return 0;
 
         return $counter["count"];
     }
 
-    public static function AddPhoto(PhotoModel $user)
+    public static function AddPhoto(PhotoModel $photo)
     {
         $db = self::connect();
 
         $photoData = [
-            "author" => $user -> GetAuthor(),
-            "name" => $user -> GetName(),
-            "title" => $user -> GetTitle()
+            "author" => $photo -> GetAuthor(),
+            "extension" => $photo -> GetExtension(),
+            "name" => $photo -> GetName(),
+            "title" => $photo -> GetTitle()
         ];
 
         $db -> wai -> insertOne($photoData);
+        print_r($photoData);
         self::increasePhotoCount();
     }
 
@@ -65,7 +70,7 @@ class DBHandler
 
         $counter = $db -> wai -> findOne(["function" => "photo"]);
         if ($counter == null)
-            $db -> wau -> insertOne(["function" => "photo", "count" => 0]);
+            $db -> wai -> insertOne(["function" => "photo", "count" => 1]);
         else
         {
             $counter["count"]++;
@@ -94,5 +99,36 @@ class DBHandler
         $_SESSION[Constants::SESSION_USER_LOGIN] = $user["login"];
         $_SESSION[Constants::SESSION_USER_EMAIL] = $user["email"];
         return true;
+    }
+
+    public static function GetPhotos():array
+    {
+        $db = self::connect();
+
+        $records = $db -> wai -> find() -> toArray();
+        $photos = array();
+
+        for ($i = 0; $i <= count($records) / Constants::PAGINATION_LIMIT; $i++)
+        {
+            $subarray = array();
+            for ($j = 0; $j < Constants::PAGINATION_LIMIT && $i * Constants::PAGINATION_LIMIT + $j < count($records); $j++)
+                if (key_exists("author", $records[$i * Constants::PAGINATION_LIMIT + $j]))
+                    array_push($subarray, $records[$i * Constants::PAGINATION_LIMIT + $j]);
+
+            array_push($photos, $subarray);
+        }
+
+        return $photos;
+    }
+
+    public static function GetPhotoById(string $id)
+    {
+        $db = self::connect();
+
+        $photo = $db -> wai -> findOne(["_id" => new ObjectID($id)]);
+        if ($photo == null)
+            return null;
+
+        return new PhotoModel($photo["author"], $photo["extension"], $photo["name"], $photo["title"]);
     }
 }

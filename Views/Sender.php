@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/gallery.css">
+        <link rel="stylesheet" href="../css/forms.css">
     </head>
     <body>
         <header>
@@ -38,29 +38,63 @@
             <div id="content">
                 <header>
                     <div class="commonHeader">
-                        <h2>Galeria</h2>
+                        <h2>Prześlij plik</h2>
                     </div>
                 </header>
-                <section>
-                    <div id="gallery">
-                        <form method="POST" action="/gallery">
-                            <?php foreach (DBHandler::GetPhotos()[$this -> controller -> currentPage] as $photo): ?>
-                                <div class="imgTile">
-                                    <a href="/photo?<?= Constants::GET_PHOTO ?>=<?= $photo["_id"] ?>">
-                                        <img src="../images/<?=$photo["name"].Constants::THUMBNAIL_PREFIX.$photo["extension"]?>" alt="<?=$photo["title"]?>">
-                                    </a>
-                                </div>
-                            <?php endforeach ?>
-                        </form>
-                        <?php if ($this -> controller -> currentPage > 0): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">Poprzednia strona</a>
-                        <?php endif ?>
-                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotos())): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona</a>
-                        <?php endif ?>
-                        <div style="clear:both"></div>
+                <form class="commonForm" method="POST" action="/sender" enctype="multipart/form-data">
+                    <header>
+                        <div class="commonHeader">
+                            <h3>Dodaj zdjęcie</h3>
+                        </div>
+                    </header>
+                    <div class="inputLabel inputArea">
+                        <label for="fileInput">Plik</label>
                     </div>
-                </section>
+                    <div class="inputField inputArea">
+                        <input type="file" name="<?= Constants::FILES_SEND_FILE ?>" id="fileInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="waterMarkInput">Znak wodny</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" name="<?= Constants::POST_SEND_WATERMARK ?>" id="waterMarkInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="titleInput">Tytuł</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" name="<?= Constants::POST_SEND_TITLE ?>" id="titleInput">
+                    </div>
+                    <div class="inputLabel inputArea">
+                        <label for="authorInput">Autor</label>
+                    </div>
+                    <div class="inputField inputArea">
+                        <input type="text" name="<?= Constants::POST_SEND_AUTHOR ?>" id="authorInput"
+                            <?php
+                            if (!empty($_SESSION[Constants::SESSION_USER_LOGGED]) && $_SESSION[Constants::SESSION_USER_LOGGED] && !empty($_SESSION[Constants::SESSION_USER_LOGIN]))
+                                echo ' value="'.$_SESSION[Constants::SESSION_USER_LOGIN].'"';
+                            ?>
+                        >
+                    </div>
+                    <?php
+                    if (!empty($_SESSION[Constants::SESSION_USER_LOGGED]) && $_SESSION[Constants::SESSION_USER_LOGGED] && !empty($_SESSION[Constants::SESSION_USER_LOGIN]))
+                        echo '
+                            <input type="radio" name="favouriteTeam" id="radioPublic">
+                            <label for="radioPublic">
+                                Publiczne
+                            </label><br/>
+                            <input type="radio" name="favouriteTeam" id="radioPrivate">
+                            <label for="radioPrivate">
+                                Prywatne
+                            </label><br/>';
+                    ?>
+                    <button class="commonButton">Wyślij</button>
+                    <button type="reset" class="commonButton">Wyczyść</button>
+                    <?php
+                    if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
+                        echo $_SESSION[Constants::SESSION_ID_ERROR];
+                    ?>
+                </form>
             </div>
         </main>
         <footer>

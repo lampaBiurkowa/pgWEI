@@ -7,6 +7,7 @@ class Constants
     const SESSION_USER_LOGIN = "userLogin";
     const SESSION_USER_EMAIL = "userEmail";
     const SESSION_USER_LOGGED = "userLogged";
+    const SESSION_IMAGES_CHECKED = "imagesChecked";
 
     const POST_REGISTER_LOGIN = "PRLogin";
     const POST_REGISTER_EMAIL = "PREmail";
@@ -38,4 +39,9 @@ class Constants
     const THUMBNAIL_HEIGHT = 125;
     const THUMBNAIL_PREFIX = "_min";
     const WATERMARK_PREFIX = "_wm";
+
+    const PAGINATION_LIMIT = 9;
+
+    const GET_PAGE = "GPage";
+    const GET_PHOTO = "GPhoto";
 }

@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/gallery.css">
     </head>
     <body>
         <header>
@@ -42,23 +41,8 @@
                     </div>
                 </header>
                 <section>
-                    <div id="gallery">
-                        <form method="POST" action="/gallery">
-                            <?php foreach (DBHandler::GetPhotos()[$this -> controller -> currentPage] as $photo): ?>
-                                <div class="imgTile">
-                                    <a href="/photo?<?= Constants::GET_PHOTO ?>=<?= $photo["_id"] ?>">
-                                        <img src="../images/<?=$photo["name"].Constants::THUMBNAIL_PREFIX.$photo["extension"]?>" alt="<?=$photo["title"]?>">
-                                    </a>
-                                </div>
-                            <?php endforeach ?>
-                        </form>
-                        <?php if ($this -> controller -> currentPage > 0): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">Poprzednia strona</a>
-                        <?php endif ?>
-                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotos())): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona</a>
-                        <?php endif ?>
-                        <div style="clear:both"></div>
+                    <div id="bigPhoto">
+                        <?= $this -> controller -> photo -> GetAuthor() ?>
                     </div>
                 </section>
             </div>
