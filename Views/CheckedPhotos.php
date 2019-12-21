@@ -43,21 +43,20 @@
                 </header>
                 <section>
                     <div id="gallery">
-                        <form method="POST" action="/gallery">
-                            <?php foreach (DBHandler::GetPhotosPaginated()[$this -> controller -> currentPage] as $photo): ?>
-                                <div class="imgTile">
-                                    <a href="/photo?<?= Constants::GET_PHOTO ?>=<?= $photo["_id"] ?>">
-                                        <img src="../images/<?=$photo["name"].Constants::THUMBNAIL_PREFIX.$photo["extension"]?>" alt="<?=$photo["title"]?>">
-                                    </a>
-                                    <input type="checkbox" name="<?= $photo["_id"] ?>"
-                                        <?php
-                                        if (in_array($photo["_id"], $_SESSION[Constants::SESSION_IMAGES_CHECKED]))
-                                            echo "checked disabled";
-                                        ?>
-                                    />
-                                </div>
-                            <?php endforeach ?>
-                            <button>Zapamiętaj wybrane</button>
+                        <form method="POST" action="/gallery/checked">
+                            <?php if (count($this -> controller -> checkedPhotosPaginated) == 0):?>
+                                Brak zapisanych zdjęć
+                            <?php else:?>
+                                <?php foreach ($this -> controller -> checkedPhotosPaginated[$this -> controller -> currentPage] as $photo): ?>
+                                    <div class="imgTile">
+                                        <a href="/photo?<?= Constants::GET_PHOTO ?>=<?= $photo["_id"] ?>">
+                                            <img src="../images/<?=$photo["name"].Constants::THUMBNAIL_PREFIX.$photo["extension"]?>" alt="<?=$photo["title"]?>">
+                                        </a>
+                                        <input type="checkbox" name="<?= $photo["_id"] ?>"/>
+                                    </div>
+                                <?php endforeach ?>
+                            <?php endif?>
+                            <button>Usuń zaznaczone z zapamiętanych</button>
                         </form>
                         <?php if ($this -> controller -> currentPage > 0): ?>
                             <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">Poprzednia strona</a>

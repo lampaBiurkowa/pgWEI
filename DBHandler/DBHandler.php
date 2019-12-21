@@ -40,7 +40,6 @@ class DBHandler
         $db = self::connect();
 
         $counter = $db -> wai -> findOne(["function" => "photo"]);
-        echo $counter["count"]."dsfafsadf";
 
         if ($counter == null)
             return 0;
@@ -60,7 +59,6 @@ class DBHandler
         ];
 
         $db -> wai -> insertOne($photoData);
-        print_r($photoData);
         self::increasePhotoCount();
     }
 
@@ -101,7 +99,7 @@ class DBHandler
         return true;
     }
 
-    public static function GetPhotos():array
+    public static function GetPhotosPaginated():array
     {
         $db = self::connect();
 

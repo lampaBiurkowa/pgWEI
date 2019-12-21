@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/gallery.css">
     </head>
     <body>
         <header>
@@ -42,7 +43,7 @@
                 </header>
                 <section>
                     <div id="bigPhoto">
-                        <?= $this -> controller -> photo -> GetAuthor() ?>
+                        <img src="../images/<?= $this -> controller -> photo -> GetName().Constants::WATERMARK_PREFIX.$this -> controller -> photo -> GetExtension()?>" alt="<?= $this -> controller -> photo -> GetTitle() ?>"/>
                     </div>
                 </section>
             </div>
