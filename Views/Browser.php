@@ -9,7 +9,10 @@ require_once "../Other/Constants.php";
         <title>IV Liga Pomorska</title>
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/forms.css">
+        <link rel="stylesheet" href="../css/gallery.css">
         <link rel="stylesheet" href="../jsui/jquery-ui.min.css">
+        <script src="../js/jq.js"></script>
+        <script src="../js/browser.js" type="text/javascript"></script>
     </head>
     <body>
         <header>
@@ -65,15 +68,19 @@ require_once "../Other/Constants.php";
                         <label for="searchInput">Wyszukiwana fraza</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="text" name="<?= Constants::AJAX_SEARCH ?>" id="searchInput">
+                        <input type="text" id="searchInput"/>
                     </div>
-                    <button class="commonButton">Szukaj</button>
                     <button type="reset" class="commonButton">Wyczyść</button>
                     <?php
                     if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
                         echo $_SESSION[Constants::SESSION_ID_ERROR];
                     ?>
                 </form>
+            </section>
+            <section>
+                <div id="<?= Constants::AJAX_TARGET_DIV_ID ?>">
+
+                </div>
             </section>
         </main>
         <footer>

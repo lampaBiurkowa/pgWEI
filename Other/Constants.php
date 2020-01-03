@@ -27,6 +27,7 @@ class Constants
     const POST_VALUE_SEND_PRIVATE_FALSE = false;
 
     const AJAX_SEARCH = "ASearch";
+    const AJAX_TARGET_DIV_ID = "ATarget";
 
     const ERROR_PASSWORD_NOT_MATCHING = "Hasła nie są takie same!";
     const ERROR_LOGIN_ALREADY_EXISTS = "Użytkownik o tym loginie już istnieje!";

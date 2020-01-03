@@ -51,7 +51,7 @@
                     </div>
                 </header>
                 <section>
-                    <div id="gallery">
+                    <div class="gallery">
                         <form method="POST" action="/gallery/checked">
                             <?php if (count($this -> controller -> checkedPhotosPaginated) == 0):?>
                                 Brak zapisanych zdjęć

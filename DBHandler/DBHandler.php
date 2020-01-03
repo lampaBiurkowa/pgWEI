@@ -100,6 +100,26 @@ class DBHandler
         return true;
     }
 
+    public static function GetPhotosUnpaginaed():array
+    {
+        $db = self::connect();
+
+        $records = $db -> wai -> find() -> toArray();
+        $photos = array();
+        for ($i = 0; $i < count($records); $i++)
+        {
+            if (key_exists("author", $records[$i])) //one of unique keys
+            {
+                if ($records[$i]["isPrivate"] && (empty($_SESSION[Constants::SESSION_USER_LOGIN]) || $records[$i]["author"] != $_SESSION[Constants::SESSION_USER_LOGIN]))
+                    continue;
+
+                array_push($photos, $records[$i]);
+            }
+        }
+
+        return $photos;
+    }
+
     public static function GetPhotosPaginated():array
     {
         $db = self::connect();
@@ -143,5 +163,16 @@ class DBHandler
             return null;
 
         return new PhotoModel($photo["author"], $photo["extension"], $photo["isPrivate"], $photo["name"], $photo["title"]);
+    }
+
+    public static function GetPhotosByTitleContainingFragment(string $fragment):array
+    {
+        $result = array();
+        $photos = self::GetPhotosUnpaginaed();
+        foreach ($photos as $photo)
+            if (strpos($photo["title"], $fragment) !== false)
+                array_push($result, $photo);
+
+        return $result;
     }
 }

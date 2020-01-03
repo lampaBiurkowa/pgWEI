@@ -51,7 +51,7 @@
                     </div>
                 </header>
                 <section>
-                    <div id="gallery">
+                    <div class="gallery">
                         <form method="POST" action="/gallery">
                             <?php if (count(DBHandler::GetPhotosPaginated()) == 0):?>
                                 Brak zdjęć :D
