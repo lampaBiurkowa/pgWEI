@@ -97,6 +97,11 @@ class SenderController extends GenericController
     {
         $author = $_POST[Constants::POST_SEND_AUTHOR];
         $title = $_POST[Constants::POST_SEND_TITLE];
-        DBHandler::AddPhoto(new PhotoModel($author, $this -> extension, $this -> baseName, $title));
+
+        $isPrivate = false;
+        if (!empty($_POST[Constants::POST_SEND_PRIVACY]))
+            $isPrivate = $_POST[Constants::POST_SEND_PRIVACY];
+
+        DBHandler::AddPhoto(new PhotoModel($author, $this -> extension, $isPrivate, $this -> baseName, $title));
     }
 }

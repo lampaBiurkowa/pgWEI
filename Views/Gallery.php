@@ -22,7 +22,16 @@
                             </ul>
                             <div style="clear:both"></div>
                         </li>
-                        <li><a href="/gallery">Galeria</a></li>
+                        <li>
+                            <a href="/gallery">Galeria</a>
+                            <ul>
+                                <li><a href="/gallery">Zdjęcia</a></li>
+                                <li><a href="/gallery/checked">Wybrane zdjęcia</a></li>
+                                <li><a href="/sender">Wyślij zdjęcie</a></li>
+                                <li><a href="/gallery/browser">Wyszukiwarka</a></li>
+                            </ul>
+                            <div style="clear:both"></div>
+                        </li>
                         <?php
                         if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || !$_SESSION[Constants::SESSION_USER_LOGGED])
                             echo '<li><a href="/login">Zaloguj</a></li>';
@@ -44,26 +53,37 @@
                 <section>
                     <div id="gallery">
                         <form method="POST" action="/gallery">
-                            <?php foreach (DBHandler::GetPhotosPaginated()[$this -> controller -> currentPage] as $photo): ?>
-                                <div class="imgTile">
-                                    <a href="/photo?<?= Constants::GET_PHOTO ?>=<?= $photo["_id"] ?>">
-                                        <img src="../images/<?=$photo["name"].Constants::THUMBNAIL_PREFIX.$photo["extension"]?>" alt="<?=$photo["title"]?>">
-                                    </a>
-                                    <input type="checkbox" name="<?= $photo["_id"] ?>"
+                            <?php if (count(DBHandler::GetPhotosPaginated()) == 0):?>
+                                Brak zdjęć :D
+                            <?php else:?>
+                                <?php foreach (DBHandler::GetPhotosPaginated()[$this -> controller -> currentPage] as $photo): ?>
+                                    <div class="imgTile">
+                                        <a href="/photo?<?= Constants::GET_PHOTO ?>=<?= $photo["_id"] ?>">
+                                            <img src="../images/<?=$photo["name"].Constants::THUMBNAIL_PREFIX.$photo["extension"]?>" alt="<?=$photo["title"]?>">
+                                        </a><br/>
+                                        <input type="checkbox" name="<?= $photo["_id"] ?>"
+                                            <?php
+                                            if (in_array($photo["_id"], $_SESSION[Constants::SESSION_IMAGES_CHECKED]))
+                                                echo "checked disabled";
+                                            ?>
+                                        /><br/>
+                                        Autor: <?= $photo["author"] ?><br/>
+                                        Tytuł: <?= $photo["title"] ?><br/>
                                         <?php
-                                        if (in_array($photo["_id"], $_SESSION[Constants::SESSION_IMAGES_CHECKED]))
-                                            echo "checked disabled";
+                                        if ($photo["isPrivate"])
+                                            echo "(prywatne)";
                                         ?>
-                                    />
-                                </div>
-                            <?php endforeach ?>
-                            <button>Zapamiętaj wybrane</button>
+                                    </div>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                            <div style="clear:both"></div>
+                            <button class="galleryButton">Zapamiętaj wybrane</button>
                         </form>
                         <?php if ($this -> controller -> currentPage > 0): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">Poprzednia strona</a>
+                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">< Poprzednia strona</a>
                         <?php endif ?>
-                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotosPaginated())): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona</a>
+                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotosPaginated()) / Constants::PAGINATION_LIMIT - 1): ?>
+                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona ></a>
                         <?php endif ?>
                         <div style="clear:both"></div>
                     </div>

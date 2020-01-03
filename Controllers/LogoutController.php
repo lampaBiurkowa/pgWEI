@@ -6,6 +6,9 @@ class LogoutController extends GenericController
 {
     public function HandleRequest():string
     {
-        return Dispatcher::GetRouteName("/logout");
+        $_SESSION[Constants::SESSION_USER_LOGGED] = false;
+        unset($_SESSION[Constants::SESSION_USER_LOGIN]);
+        unset($_SESSION[Constants::SESSION_USER_EMAIL]);
+        return Dispatcher::GetRouteName("/index");
     }
 }

@@ -18,9 +18,15 @@ class Constants
     const POST_LOGIN_PASSWORD = "PLPassword";
 
     const POST_SEND_AUTHOR = "PSAuthor";
+    const POST_SEND_PRIVACY = "PSPrivacy";
     const POST_SEND_TITLE = "PSTitle";
     const POST_SEND_WATERMARK = "PSWaterMark";
-    const FILES_SEND_FILE = "PSFile";
+    const FILES_SEND_FILE = "FSFile";
+
+    const POST_VALUE_SEND_PRIVATE_TRUE = true;
+    const POST_VALUE_SEND_PRIVATE_FALSE = false;
+
+    const AJAX_SEARCH = "ASearch";
 
     const ERROR_PASSWORD_NOT_MATCHING = "Hasła nie są takie same!";
     const ERROR_LOGIN_ALREADY_EXISTS = "Użytkownik o tym loginie już istnieje!";

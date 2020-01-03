@@ -22,7 +22,16 @@
                             </ul>
                             <div style="clear:both"></div>
                         </li>
-                        <li><a href="/gallery">Galeria</a></li>
+                        <li>
+                            <a href="/gallery">Galeria</a>
+                            <ul>
+                                <li><a href="/gallery">Zdjęcia</a></li>
+                                <li><a href="/gallery/checked">Wybrane zdjęcia</a></li>
+                                <li><a href="/sender">Wyślij zdjęcie</a></li>
+                                <li><a href="/gallery/browser">Wyszukiwarka</a></li>
+                            </ul>
+                            <div style="clear:both"></div>
+                        </li>
                         <?php
                         if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || !$_SESSION[Constants::SESSION_USER_LOGGED])
                             echo '<li><a href="/login">Zaloguj</a></li>';
@@ -72,18 +81,18 @@
                         <input type="text" name="<?= Constants::POST_SEND_AUTHOR ?>" id="authorInput"
                             <?php
                             if (!empty($_SESSION[Constants::SESSION_USER_LOGGED]) && $_SESSION[Constants::SESSION_USER_LOGGED] && !empty($_SESSION[Constants::SESSION_USER_LOGIN]))
-                                echo ' value="'.$_SESSION[Constants::SESSION_USER_LOGIN].'"';
+                                echo ' value="'.$_SESSION[Constants::SESSION_USER_LOGIN].'" readonly';
                             ?>
                         >
                     </div>
                     <?php
                     if (!empty($_SESSION[Constants::SESSION_USER_LOGGED]) && $_SESSION[Constants::SESSION_USER_LOGGED] && !empty($_SESSION[Constants::SESSION_USER_LOGIN]))
                         echo '
-                            <input type="radio" name="favouriteTeam" id="radioPublic">
+                            <input type="radio" name="'.Constants::POST_SEND_PRIVACY.'" value="'.Constants::POST_VALUE_SEND_PRIVATE_FALSE.'" id="radioPublic" checked>
                             <label for="radioPublic">
                                 Publiczne
                             </label><br/>
-                            <input type="radio" name="favouriteTeam" id="radioPrivate">
+                            <input type="radio" name="'.Constants::POST_SEND_PRIVACY.'" value="'.Constants::POST_VALUE_SEND_PRIVATE_TRUE.'" id="radioPrivate">
                             <label for="radioPrivate">
                                 Prywatne
                             </label><br/>';

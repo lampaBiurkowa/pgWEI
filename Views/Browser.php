@@ -1,5 +1,5 @@
 <?php
-    require_once "../Other/Constants.php";
+require_once "../Other/Constants.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -51,40 +51,29 @@
         <main>
             <header>
                 <div class="commonHeader">
-                    <h2>Logowanie</h2>
+                    <h2>Wyszukiwanie zdjęć</h2>
                 </div>
             </header>
             <section>
                 <form class="commonForm" method="POST" action="/login">
                     <header>
                         <div class="commonHeader">
-                            <h3>Zaloguj się</h3>
+                            <h3>Szukaj zdjęcia</h3>
                         </div>
                     </header>
                     <div class="inputLabel inputArea">
-                        <label for="loginInput">Login</label>
+                        <label for="searchInput">Wyszukiwana fraza</label>
                     </div>
                     <div class="inputField inputArea">
-                        <input type="text" name="<?= Constants::POST_LOGIN_LOGIN ?>" id="loginInput">
+                        <input type="text" name="<?= Constants::AJAX_SEARCH ?>" id="searchInput">
                     </div>
-                    <div class="inputLabel inputArea">
-                        <label for="passwordInput">Hasło</label>
-                    </div>
-                    <div class="inputField inputArea">
-                        <input type="password" name="<?= Constants::POST_LOGIN_PASSWORD ?>" id="passwordInput">
-                    </div>
-                    <button class="commonButton">Zaloguj</button>
+                    <button class="commonButton">Szukaj</button>
                     <button type="reset" class="commonButton">Wyczyść</button>
                     <?php
-                        if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
-                            echo $_SESSION[Constants::SESSION_ID_ERROR];
+                    if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
+                        echo $_SESSION[Constants::SESSION_ID_ERROR];
                     ?>
                 </form>
-            </section>
-            <section>
-                <div class="commonHeader">
-                    <h5><a href="/register">Nie masz konta? Zarejestruj się!</a></h5>
-                </div>
             </section>
         </main>
         <footer>

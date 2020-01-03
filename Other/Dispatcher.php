@@ -1,5 +1,6 @@
 <?php
 require_once "../Controllers/GenericController.php";
+require_once "../Controllers/BrowserController.php";
 require_once "../Controllers/CheckedPhotosController.php";
 require_once "../Controllers/ErrorController.php";
 require_once "../Controllers/GalleryController.php";
@@ -18,6 +19,7 @@ class Dispatcher
 {
     private static $routing = [
         "/" => "Login",
+        "/gallery/browser" => "Browser",
         "/gallery/checked" => "CheckedPhotos",
         "/error" => "Error",
         "/gallery" => "Gallery",

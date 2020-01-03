@@ -23,7 +23,16 @@
                             </ul>
                             <div style="clear:both"></div>
                         </li>
-                        <li><a href="/gallery">Galeria</a></li>
+                        <li>
+                            <a href="/gallery">Galeria</a>
+                            <ul>
+                                <li><a href="/gallery">Zdjęcia</a></li>
+                                <li><a href="/gallery/checked">Wybrane zdjęcia</a></li>
+                                <li><a href="/sender">Wyślij zdjęcie</a></li>
+                                <li><a href="/gallery/browser">Wyszukiwarka</a></li>
+                            </ul>
+                            <div style="clear:both"></div>
+                        </li>
                         <?php
                         if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || !$_SESSION[Constants::SESSION_USER_LOGGED])
                             echo '<li><a href="/login">Zaloguj</a></li>';

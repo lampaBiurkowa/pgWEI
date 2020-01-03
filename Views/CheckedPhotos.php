@@ -22,7 +22,16 @@
                             </ul>
                             <div style="clear:both"></div>
                         </li>
-                        <li><a href="/gallery">Galeria</a></li>
+                        <li>
+                            <a href="/gallery">Galeria</a>
+                            <ul>
+                                <li><a href="/gallery">Zdjęcia</a></li>
+                                <li><a href="/gallery/checked">Wybrane zdjęcia</a></li>
+                                <li><a href="/sender">Wyślij zdjęcie</a></li>
+                                <li><a href="/gallery/browser">Wyszukiwarka</a></li>
+                            </ul>
+                            <div style="clear:both"></div>
+                        </li>
                         <?php
                         if (empty($_SESSION[Constants::SESSION_USER_LOGGED]) || !$_SESSION[Constants::SESSION_USER_LOGGED])
                             echo '<li><a href="/login">Zaloguj</a></li>';
@@ -56,13 +65,14 @@
                                     </div>
                                 <?php endforeach ?>
                             <?php endif?>
-                            <button>Usuń zaznaczone z zapamiętanych</button>
+                            <div style="clear:both"></div>
+                            <button class="galleryButton">Usuń zaznaczone z zapamiętanych</button>
                         </form>
                         <?php if ($this -> controller -> currentPage > 0): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">Poprzednia strona</a>
+                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">Poprzednia strona</a>
                         <?php endif ?>
-                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotosPaginated())): ?>
-                            <a href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona</a>
+                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotosPaginated()) / Constants::PAGINATION_LIMIT - 1): ?>
+                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona</a>
                         <?php endif ?>
                         <div style="clear:both"></div>
                     </div>

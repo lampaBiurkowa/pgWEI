@@ -12,22 +12,32 @@
     width: 200px;
 }
 
-.imgTile img:hover
-{
-    animation: imgExpand;
-    animation-duration: 0.8s;
-    height: 250px;
-    width: 400px;
-}
-
-@keyframes imgExpand
-{
-    0% {height: 125px; width: 200px;}
-    50% {height: 225px; width: 350px;}
-    100% {height: 250px; width: 400px;}
-}
-
 #bigPhoto
 {
     padding: 20px;
+}
+
+.paginationLink
+{
+    float: left;
+    padding: 5px;
+    width: 250px;
+}
+
+.paginationLink:hover
+{
+    text-decoration: underline;
+}
+
+.galleryButton
+{
+    background-color: #00aa66;
+    border: solid #004400 1px;
+    display: block;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 250px;
 }

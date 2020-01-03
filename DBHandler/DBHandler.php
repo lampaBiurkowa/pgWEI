@@ -54,6 +54,7 @@ class DBHandler
         $photoData = [
             "author" => $photo -> GetAuthor(),
             "extension" => $photo -> GetExtension(),
+            "isPrivate" => $photo -> IsPrivate(),
             "name" => $photo -> GetName(),
             "title" => $photo -> GetTitle()
         ];
@@ -105,16 +106,30 @@ class DBHandler
 
         $records = $db -> wai -> find() -> toArray();
         $photos = array();
+        $currentPhotosPerPage = 0;
 
-        for ($i = 0; $i <= count($records) / Constants::PAGINATION_LIMIT; $i++)
+        $subarray = array();
+        for ($i = 0; $i < count($records); $i++)
         {
-            $subarray = array();
-            for ($j = 0; $j < Constants::PAGINATION_LIMIT && $i * Constants::PAGINATION_LIMIT + $j < count($records); $j++)
-                if (key_exists("author", $records[$i * Constants::PAGINATION_LIMIT + $j]))
-                    array_push($subarray, $records[$i * Constants::PAGINATION_LIMIT + $j]);
+            if (key_exists("author", $records[$i])) //one of unique keys
+            {
+                if ($records[$i]["isPrivate"] && (empty($_SESSION[Constants::SESSION_USER_LOGIN]) || $records[$i]["author"] != $_SESSION[Constants::SESSION_USER_LOGIN]))
+                    continue;
 
-            array_push($photos, $subarray);
+                $currentPhotosPerPage++;
+                array_push($subarray, $records[$i]);
+            }
+
+            if ($currentPhotosPerPage == Constants::PAGINATION_LIMIT)
+            {
+                array_push($photos, $subarray);
+                $currentPhotosPerPage = 0;
+                $subarray = array();
+            }
         }
+
+        if (count($subarray) != 0)
+            array_push($photos, $subarray);
 
         return $photos;
     }
@@ -127,6 +142,6 @@ class DBHandler
         if ($photo == null)
             return null;
 
-        return new PhotoModel($photo["author"], $photo["extension"], $photo["name"], $photo["title"]);
+        return new PhotoModel($photo["author"], $photo["extension"], $photo["isPrivate"], $photo["name"], $photo["title"]);
     }
 }
