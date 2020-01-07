@@ -22,8 +22,8 @@ class CheckedPhotosController extends GenericController
         if (empty($_SESSION[Constants::SESSION_IMAGES_CHECKED]))
             $_SESSION[Constants::SESSION_IMAGES_CHECKED] = array();
 
-        $this -> checkedPhotosPaginated = array();
         $allPhotos = DBHandler::GetPhotosPaginated();
+        $this -> checkedPhotosPaginated = array();
         $currentPhotosPerPage = 0;
         $subarray = array();
         foreach ($allPhotos as $collection)
@@ -41,7 +41,8 @@ class CheckedPhotosController extends GenericController
                     }
                 }
 
-        array_push($this -> checkedPhotosPaginated, $subarray);
+        if (count($subarray) > 0)
+            array_push($this -> checkedPhotosPaginated, $subarray);
     }
 
     private function removePhotosSelected()

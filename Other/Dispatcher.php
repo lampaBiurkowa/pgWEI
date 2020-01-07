@@ -58,7 +58,7 @@ class Dispatcher
         return $controllerName;
     }
 
-    function getViewName(string $actionUrl):string
+    private function getViewName(string $actionUrl):string
     {
         $controllerName = self::GetRouteName($actionUrl)."Controller";
 
@@ -76,7 +76,7 @@ class Dispatcher
         return $this -> controller -> HandleRequest();
     }
 
-    function handleResponse($viewName)
+    private function handleResponse($viewName)
     {
         if (strpos($viewName, self::REDIRECT_PREFIX) === 0)
         {
@@ -88,8 +88,16 @@ class Dispatcher
             $this -> render($viewName);
     }
 
-    function render($viewName)
+    private function render($viewName)
     {
         include "../Views/".$viewName.".php";
+        $this -> cleanErrorMessages();
+    }
+
+    private function cleanErrorMessages()
+    {
+        unset ($_SESSION[Constants::SESSION_ID_LOGIN_ERROR]);
+        unset ($_SESSION[Constants::SESSION_ID_REGISTRATION_ERROR]);
+        unset ($_SESSION[Constants::SESSION_ID_SENDER_ERROR]);
     }
 }

@@ -16,7 +16,7 @@ class BrowserSnippetController extends GenericController
         $photos = DBHandler::GetPhotosByTitleContainingFragment($fragment);
         $this -> output = '<div class="gallery">';
         if (count($photos) == 0)
-            $this -> output .= "Nie znaleziono pasujących wyników :D";
+            $this -> output .= '<div class="noResults">Nie znaleziono pasujących wyników :D</div>';
         else
         {
             foreach ($photos as $photo)

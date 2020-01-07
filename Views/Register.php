@@ -89,8 +89,8 @@
                     <button class="commonButton">Zarejestruj</button>
                     <button type="reset" class="commonButton">Wyczyść</button>
                     <?php
-                        if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
-                            echo $_SESSION[Constants::SESSION_ID_ERROR];
+                        if (!empty($_SESSION[Constants::SESSION_ID_REGISTRATION_ERROR]))
+                            echo $_SESSION[Constants::SESSION_ID_REGISTRATION_ERROR];
                     ?>
                 </form>
             </section>

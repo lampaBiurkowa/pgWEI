@@ -45,7 +45,7 @@ class RegisterController extends GenericController
     {
         if (strcmp($pass1, $pass2) != 0)
         {
-            $_SESSION[Constants::SESSION_ID_ERROR] = Constants::ERROR_PASSWORD_NOT_MATCHING;
+            $_SESSION[Constants::SESSION_ID_REGISTRATION_ERROR] = Constants::ERROR_PASSWORD_NOT_MATCHING;
             return false;
         }
 

@@ -54,7 +54,7 @@
                     <div class="gallery">
                         <form method="POST" action="/gallery">
                             <?php if (count(DBHandler::GetPhotosPaginated()) == 0):?>
-                                Brak zdjęć :D
+                                <div class="noResults">Brak zdjęć :D</div>
                             <?php else:?>
                                 <?php foreach (DBHandler::GetPhotosPaginated()[$this -> controller -> currentPage] as $photo): ?>
                                     <div class="imgTile">
@@ -77,13 +77,15 @@
                                 <?php endforeach ?>
                             <?php endif ?>
                             <div style="clear:both"></div>
-                            <button class="galleryButton">Zapamiętaj wybrane</button>
+                            <?php if (count(DBHandler::GetPhotosPaginated()) > 0):?>
+                                <button class="galleryButton">Zapamiętaj wybrane</button>
+                            <?php endif ?>
                         </form>
                         <?php if ($this -> controller -> currentPage > 0): ?>
-                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">< Poprzednia strona</a>
+                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>"><- Poprzednia strona</a>
                         <?php endif ?>
-                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotosPaginated()) / Constants::PAGINATION_LIMIT - 1): ?>
-                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona ></a>
+                        <?php if ($this -> controller -> currentPage < count(DBHandler::GetPhotosPaginated()) - 1): ?>
+                            <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage + 1 ?>">Następna strona -></a>
                         <?php endif ?>
                         <div style="clear:both"></div>
                     </div>

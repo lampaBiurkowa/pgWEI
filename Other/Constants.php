@@ -3,7 +3,9 @@
 
 class Constants
 {
-    const SESSION_ID_ERROR = "app_error";
+    const SESSION_ID_LOGIN_ERROR = "errorLogin";
+    const SESSION_ID_REGISTRATION_ERROR = "errorRegistration";
+    const SESSION_ID_SENDER_ERROR = "errorSender";
     const SESSION_USER_LOGIN = "userLogin";
     const SESSION_USER_EMAIL = "userEmail";
     const SESSION_USER_LOGGED = "userLogged";
@@ -29,12 +31,14 @@ class Constants
     const AJAX_SEARCH = "ASearch";
     const AJAX_TARGET_DIV_ID = "ATarget";
 
+    const ERROR_DB = "Błąd bazy danych :)";
     const ERROR_PASSWORD_NOT_MATCHING = "Hasła nie są takie same!";
     const ERROR_LOGIN_ALREADY_EXISTS = "Użytkownik o tym loginie już istnieje!";
     const ERROR_LOGIN_INCORRECT = "Błędny login!";
     const ERROR_PASSWORD_INCORRECT = "Błędne hasło!";
     const ERROR_FILE_FORMAT_INCORRECT = "Błędny format pliku! Wybierz .jpg lub .png";
     const ERROR_FILE_TOO_LARGE = "Zbyt duży rozmar pliku! Maksymalny rozmiar pliku to 1 MiB.";
+    const ERROR_FILE_TOO_LARGE_AND_INCORRECT = "Błędny format i rozmiar pliku.";
     const ERROR_SAVING_FILE = "Nie udało się zapisać pliku.";
 
     const FORMAT_PNG = "image/png";

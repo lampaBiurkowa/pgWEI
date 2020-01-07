@@ -100,8 +100,8 @@
                     <button class="commonButton">Wyślij</button>
                     <button type="reset" class="commonButton">Wyczyść</button>
                     <?php
-                    if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
-                        echo $_SESSION[Constants::SESSION_ID_ERROR];
+                    if (!empty($_SESSION[Constants::SESSION_ID_SENDER_ERROR]))
+                        echo $_SESSION[Constants::SESSION_ID_SENDER_ERROR];
                     ?>
                 </form>
             </div>

@@ -45,19 +45,27 @@ class SenderController extends GenericController
     private function isFileCorrect():bool
     {
         $mimeType = $this -> getMimeType($_FILES[Constants::FILES_SEND_FILE]["tmp_name"]);
+        $sizeCorrect = true;
+        $formatCorrect = true;
+
         if ($mimeType != Constants::FORMAT_PNG && $mimeType != Constants::FORMAT_JPG)
-        {
-            $_SESSION[Constants::SESSION_ID_ERROR] = Constants::ERROR_FILE_FORMAT_INCORRECT;
-            return false;
-        }
-
+            $formatCorrect = false;
         if ($_FILES[Constants::FILES_SEND_FILE]["size"] > Constants::MAX_BYTES_PER_FILE)
+            $sizeCorrect = false;
+
+        if (!$sizeCorrect && !$formatCorrect)
+            $_SESSION[Constants::SESSION_ID_SENDER_ERROR] = Constants::ERROR_FILE_TOO_LARGE_AND_INCORRECT;
+        else if (!$sizeCorrect)
+            $_SESSION[Constants::SESSION_ID_SENDER_ERROR] = Constants::ERROR_FILE_TOO_LARGE;
+        else if (!$formatCorrect)
+            $_SESSION[Constants::SESSION_ID_SENDER_ERROR] = Constants::ERROR_FILE_FORMAT_INCORRECT;
+        else
         {
-            $_SESSION[Constants::SESSION_ID_ERROR] = Constants::ERROR_FILE_TOO_LARGE;
-            return false;
+            unset($_SESSION[Constants::SESSION_ID_SENDER_ERROR]);
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     private function getMimeType($filePath):string
@@ -78,10 +86,11 @@ class SenderController extends GenericController
     {
         if (!move_uploaded_file($_FILES[Constants::FILES_SEND_FILE]["tmp_name"], $this -> getDestinationPath()))
         {
-            $_SESSION[Constants::SESSION_ID_ERROR] = Constants::ERROR_SAVING_FILE;
+            $_SESSION[Constants::SESSION_ID_SENDER_ERROR] = Constants::ERROR_SAVING_FILE;
             return false;
         }
 
+        unset($_SESSION[Constants::SESSION_ID_SENDER_ERROR]);
         return true;
     }
 

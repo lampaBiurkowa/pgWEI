@@ -71,10 +71,6 @@ require_once "../Other/Constants.php";
                         <input type="text" id="searchInput"/>
                     </div>
                     <button type="reset" class="commonButton">Wyczyść</button>
-                    <?php
-                    if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
-                        echo $_SESSION[Constants::SESSION_ID_ERROR];
-                    ?>
                 </form>
             </section>
             <section>

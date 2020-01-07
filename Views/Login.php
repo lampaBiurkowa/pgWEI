@@ -76,8 +76,8 @@
                     <button class="commonButton">Zaloguj</button>
                     <button type="reset" class="commonButton">Wyczyść</button>
                     <?php
-                        if (!empty($_SESSION[Constants::SESSION_ID_ERROR]))
-                            echo $_SESSION[Constants::SESSION_ID_ERROR];
+                        if (!empty($_SESSION[Constants::SESSION_ID_LOGIN_ERROR]))
+                            echo $_SESSION[Constants::SESSION_ID_LOGIN_ERROR];
                     ?>
                 </form>
             </section>

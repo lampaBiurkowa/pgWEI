@@ -54,7 +54,7 @@
                     <div class="gallery">
                         <form method="POST" action="/gallery/checked">
                             <?php if (count($this -> controller -> checkedPhotosPaginated) == 0):?>
-                                Brak zapisanych zdjęć
+                                <div class="noResults">Brak zapisanych zdjęć</div>
                             <?php else:?>
                                 <?php foreach ($this -> controller -> checkedPhotosPaginated[$this -> controller -> currentPage] as $photo): ?>
                                     <div class="imgTile">
@@ -66,7 +66,9 @@
                                 <?php endforeach ?>
                             <?php endif?>
                             <div style="clear:both"></div>
-                            <button class="galleryButton">Usuń zaznaczone z zapamiętanych</button>
+                            <?php if (count($this -> controller -> checkedPhotosPaginated) > 0):?>
+                                <button class="galleryButton">Usuń zaznaczone z zapamiętanych</button>
+                            <?php endif ?>
                         </form>
                         <?php if ($this -> controller -> currentPage > 0): ?>
                             <a class="paginationLink" href="/gallery?<?= Constants::GET_PAGE ?>=<?= $this -> controller -> currentPage - 1 ?>">Poprzednia strona</a>
